@@ -1,1 +1,483 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cub Scout Pack 170 | Unionville & Farmington, CT</title>
+  <meta name="description" content="Cub Scout Pack 170 in Unionville, CT. Family-centered outdoor adventure, STEM, campcraft, and character building for boys and girls in Grades K-5." />
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Plus Jakarta Sans & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            pack: {
+              navy: '#15446B',
+              dark: '#0B253A',
+              gold: '#E8A72B',
+              orange: '#DF6B26',
+              teal: '#007A8A',
+              green: '#267B44',
+              cream: '#FAF6EE',
+              paper: '#FFFFFF',
+              border: '#E2D9C8'
+            }
+          },
+          fontFamily: {
+            heading: ['Outfit', 'sans-serif'],
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    details summary::-webkit-details-marker { display: none; }
+  </style>
+</head>
+
+<body class="bg-pack-cream text-pack-dark font-sans antialiased selection:bg-pack-gold selection:text-pack-dark">
+
+  <!-- ================= TOP UTILITY BAR ================= -->
+  <div class="bg-pack-dark text-pack-cream/90 text-xs py-2 px-4 border-b border-white/10">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2 text-center sm:text-left">
+      <div class="flex items-center gap-2">
+        <span class="inline-block w-2 h-2 rounded-full bg-pack-gold animate-pulse"></span>
+        <span>Welcoming Boys & Girls (Grades K–5) in Farmington, Unionville & surrounding towns</span>
+      </div>
+      <div class="flex items-center gap-4">
+        <a href="https://www.facebook.com/profile.php?id=61555280236028" target="_blank" rel="noopener noreferrer" class="hover:text-pack-gold flex items-center gap-1 transition-colors">
+          <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          Follow on Facebook
+        </a>
+        <span>•</span>
+        <a href="mailto:cspack170ct@gmail.com" class="hover:text-pack-gold transition-colors">cspack170ct@gmail.com</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= STICKY HEADER & NAV ================= -->
+  <header class="sticky top-0 z-50 bg-pack-navy/95 backdrop-blur-md text-white shadow-lg border-b border-pack-teal/30">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Brand Logo Lockup -->
+      <a href="#" class="flex items-center gap-3.5 group">
+        <img src="logo.jpg" alt="Cub Scout Pack 170 Shield" class="h-14 w-auto rounded-lg shadow-sm border border-pack-gold/30 group-hover:scale-105 transition-transform" />
+        <div class="flex flex-col">
+          <span class="font-heading font-extrabold text-2xl tracking-tight leading-none text-white group-hover:text-pack-gold transition-colors">PACK 170</span>
+          <span class="text-[11px] font-semibold uppercase tracking-widest text-pack-gold mt-1">Unionville • Connecticut</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav class="hidden md:flex items-center gap-8 font-medium text-sm">
+        <a href="#about" class="text-white/90 hover:text-pack-gold transition-colors">Why Pack 170</a>
+        <a href="#one-pack" class="text-white/90 hover:text-pack-gold transition-colors">How It Works</a>
+        <a href="#activities" class="text-white/90 hover:text-pack-gold transition-colors">Activities</a>
+        <a href="#faq" class="text-white/90 hover:text-pack-gold transition-colors">Parent FAQ</a>
+      </nav>
+
+      <!-- Primary CTAs -->
+      <div class="flex items-center gap-3">
+        <a href="#contact" class="hidden sm:inline-flex text-xs uppercase tracking-wider font-bold text-pack-cream hover:text-white px-3 py-2">
+          Ask a Question
+        </a>
+        <a href="https://beascout.scouting.org/units/b245a983-8526-40a3-ae25-b263af4e329d" target="_blank" rel="noopener noreferrer" class="bg-pack-gold hover:bg-pack-orange text-pack-dark font-heading font-bold text-sm px-5 py-2.5 rounded-full shadow-md hover:shadow-lg transition-all transform hover:-translate-y-0.5">
+          Apply Now
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= HERO SECTION (TWO-COLUMN SPLIT) ================= -->
+  <section class="relative overflow-hidden pt-12 pb-20 sm:pt-16 sm:pb-28 bg-gradient-to-b from-pack-cream via-white to-pack-cream">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Left: Value Proposition -->
+        <div class="lg:col-span-6 space-y-6">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-pack-navy text-pack-gold text-xs font-bold uppercase tracking-wider shadow-sm">
+            <span class="w-2 h-2 rounded-full bg-pack-teal"></span>
+            Unionville, CT • Boys & Girls Grades K–5
+          </div>
+          
+          <h1 class="font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold text-pack-navy leading-[1.1]">
+            Real Outdoor Adventure. <br/>
+            <span class="text-pack-orange">One Tight-Knit Family.</span>
+          </h1>
+          
+          <p class="text-base sm:text-lg text-pack-dark/80 leading-relaxed max-w-xl">
+            At Pack 170, we believe childhood should be filled with campfires, Pinewood Derby races, hiking trails, and hands-on discovery. We meet together, explore together, and welcome families of all experience levels.
+          </p>
+
+          <!-- Dual CTAs -->
+          <div class="flex flex-col sm:flex-row gap-4 pt-2">
+            <a href="#contact" class="inline-flex justify-center items-center px-7 py-4 bg-pack-gold hover:bg-pack-orange text-pack-dark font-heading font-extrabold rounded-xl shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5">
+              Come Visit a Meeting
+            </a>
+            <a href="https://beascout.scouting.org/units/b245a983-8526-40a3-ae25-b263af4e329d" target="_blank" rel="noopener noreferrer" class="inline-flex justify-center items-center px-7 py-4 bg-pack-navy hover:bg-pack-dark text-white font-heading font-bold rounded-xl shadow transition-all">
+              Register Online (Be A Scout) →
+            </a>
+          </div>
+
+          <!-- Micro Trust Elements -->
+          <div class="pt-4 flex items-center gap-6 text-xs text-pack-dark/70 font-semibold">
+            <div class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-pack-green" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              No Camping Experience Needed
+            </div>
+            <div class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-pack-green" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              Siblings Always Welcome
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Fire Truck Hero Image Card -->
+        <div class="lg:col-span-6">
+          <div class="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-pack-navy aspect-[4/3] group">
+            <img src="hero-firetruck.JPG" alt="Cub Scout Pack 170 on the historic Unionville fire truck" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500" />
+            <div class="absolute inset-0 bg-gradient-to-t from-pack-dark/85 via-transparent to-transparent"></div>
+            <div class="absolute bottom-6 left-6 right-6 text-white">
+              <span class="bg-pack-gold text-pack-dark text-[10px] font-extrabold uppercase tracking-widest px-2.5 py-1 rounded">Unionville Tradition</span>
+              <p class="font-heading font-bold text-lg sm:text-xl mt-2 text-white">Building character, civic pride, and lifelong friendships right here in town.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= VALUE TICKER ================= -->
+  <section id="about" class="bg-pack-navy text-pack-cream py-10 border-y border-pack-teal/30">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        <div class="space-y-1">
+          <div class="font-heading text-3xl sm:text-4xl font-extrabold text-pack-gold">K–5th</div>
+          <div class="text-xs uppercase tracking-wider text-white/80 font-medium">Boys & Girls Welcome</div>
+        </div>
+        <div class="space-y-1">
+          <div class="font-heading text-3xl sm:text-4xl font-extrabold text-pack-gold">2–3x</div>
+          <div class="text-xs uppercase tracking-wider text-white/80 font-medium">Gatherings a Month</div>
+        </div>
+        <div class="space-y-1">
+          <div class="font-heading text-3xl sm:text-4xl font-extrabold text-pack-gold">100%</div>
+          <div class="text-xs uppercase tracking-wider text-white/80 font-medium">Family Friendly</div>
+        </div>
+        <div class="space-y-1">
+          <div class="font-heading text-3xl sm:text-4xl font-extrabold text-pack-gold">Local</div>
+          <div class="text-xs uppercase tracking-wider text-white/80 font-medium">Unionville & Farmington</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= "ALL RANKS, ONE PACK" SECTION ================= -->
+  <section id="one-pack" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Pavilion Photo -->
+        <div class="lg:col-span-6 order-2 lg:order-1">
+          <div class="relative rounded-3xl overflow-hidden shadow-xl border-4 border-pack-cream group">
+            <img src="pavilion-group.jpg" alt="Pack 170 multi-age Scouts hiking group" class="w-full h-auto object-cover group-hover:scale-102 transition-transform duration-300" />
+            <div class="p-4 bg-pack-navy text-white text-sm">
+              <span class="font-bold text-pack-gold">One Pack, One Community:</span> Scouts of all grades exploring and learning side-by-side.
+            </div>
+          </div>
+        </div>
+
+        <!-- Narrative Copy -->
+        <div class="lg:col-span-6 space-y-5 order-1 lg:order-2">
+          <span class="text-pack-orange font-bold text-xs uppercase tracking-widest">How Pack 170 Works</span>
+          <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-pack-navy">
+            One Unified Schedule. Natural Big-Sibling Mentorship.
+          </h2>
+          <p class="text-pack-dark/80 text-base leading-relaxed">
+            Tired of juggling three different sports practices at three different fields? Pack 170 operates as an integrated, multi-age Pack. While each Scout works toward grade-specific adventures, we meet, hike, and camp as a single community.
+          </p>
+          
+          <div class="space-y-3 pt-2">
+            <div class="flex items-start gap-3">
+              <div class="w-7 h-7 rounded-full bg-pack-gold/20 text-pack-navy flex items-center justify-center font-bold text-sm flex-shrink-0 mt-0.5">✓</div>
+              <div>
+                <strong class="text-pack-navy">Streamlined for Busy Parents:</strong> One gathering location, one calendar, and siblings are always included.
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-7 h-7 rounded-full bg-pack-gold/20 text-pack-navy flex items-center justify-center font-bold text-sm flex-shrink-0 mt-0.5">✓</div>
+              <div>
+                <strong class="text-pack-navy">Real Youth Leadership:</strong> Older 4th and 5th graders learn patience and leadership by helping Kindergarteners and 1st graders with knots, tents, and trail skills.
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-7 h-7 rounded-full bg-pack-gold/20 text-pack-navy flex items-center justify-center font-bold text-sm flex-shrink-0 mt-0.5">✓</div>
+              <div>
+                <strong class="text-pack-navy">Grade-Level Badges:</strong> Scouts advance through the official ranks (Lion, Tiger, Wolf, Bear, Webelos, and Arrow of Light) throughout the year.
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 4 ADVENTURE PILLARS ================= -->
+  <section id="activities" class="py-20 bg-pack-cream border-t border-pack-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-2xl mx-auto mb-16 space-y-3">
+        <span class="text-pack-orange font-bold text-xs uppercase tracking-widest">What We Do</span>
+        <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-pack-navy">
+          Adventures That Shape Great Kids
+        </h2>
+        <p class="text-pack-dark/80 text-base">
+          From hands-on woodworking to campfire cooking, every activity is designed to spark curiosity and self-reliance.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <!-- Card 1: Campcraft -->
+        <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow border border-pack-border flex flex-col">
+          <div class="h-48 overflow-hidden">
+            <img src="campfire.jpeg" alt="Cub Scouts around a campfire" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300" />
+          </div>
+          <div class="p-6 flex-1 flex flex-col justify-between">
+            <div class="space-y-2">
+              <span class="text-xs font-bold text-pack-teal uppercase tracking-wider">Outdoors & Wilderness</span>
+              <h3 class="font-heading text-xl font-bold text-pack-navy">Campfires & Hiking</h3>
+              <p class="text-sm text-pack-dark/80">Campfire stories, tent camping, trail safety, and learning the basics of outdoor survival.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2: STEM & Making -->
+        <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow border border-pack-border flex flex-col">
+          <div class="h-48 overflow-hidden">
+            <img src="stem.jpg" alt="Scout working with wood and tools" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300" />
+          </div>
+          <div class="p-6 flex-1 flex flex-col justify-between">
+            <div class="space-y-2">
+              <span class="text-xs font-bold text-pack-teal uppercase tracking-wider">Makers & STEM</span>
+              <h3 class="font-heading text-xl font-bold text-pack-navy">Hands-On Building</h3>
+              <p class="text-sm text-pack-dark/80">Learning practical tool safety, electronics, science kits, and building crafts with their own hands.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3: Pinewood Derby -->
+        <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow border border-pack-border flex flex-col">
+          <div class="h-48 overflow-hidden">
+            <img src="pinewood.jpeg" alt="Scouts holding Pinewood Derby trophies" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300" />
+          </div>
+          <div class="p-6 flex-1 flex flex-col justify-between">
+            <div class="space-y-2">
+              <span class="text-xs font-bold text-pack-teal uppercase tracking-wider">Traditions</span>
+              <h3 class="font-heading text-xl font-bold text-pack-navy">Pinewood Derby</h3>
+              <p class="text-sm text-pack-dark/80">Sculpting, weighting, and racing custom wooden race cars down the track every spring.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4: Community Service -->
+        <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow border border-pack-border flex flex-col">
+          <div class="h-48 overflow-hidden">
+            <img src="community.jpeg" alt="Pack marching in Unionville parade" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300" />
+          </div>
+          <div class="p-6 flex-1 flex flex-col justify-between">
+            <div class="space-y-2">
+              <span class="text-xs font-bold text-pack-teal uppercase tracking-wider">Civic Pride</span>
+              <h3 class="font-heading text-xl font-bold text-pack-navy">Giving Back</h3>
+              <p class="text-sm text-pack-dark/80">Decorating the Unionville Gazebo, Scouting for Food drives, and honoring local veterans.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PHOTO GALLERY MOSAIC ================= -->
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-10">
+        <h2 class="font-heading text-2xl sm:text-3xl font-bold text-pack-navy">Life in Pack 170</h2>
+        <p class="text-sm text-pack-dark/70 mt-1">Authentic memories from our recent adventures across Connecticut.</p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="rounded-xl overflow-hidden aspect-square shadow border border-pack-border">
+          <img src="activity-table.jpeg" alt="Scouts making crafts together" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300" />
+        </div>
+        <div class="rounded-xl overflow-hidden aspect-square shadow border border-pack-border">
+          <img src="falg-folding.jpeg" alt="Scouts learning flag folding from a soldier" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300" />
+        </div>
+        <div class="rounded-xl overflow-hidden aspect-square shadow border border-pack-border">
+          <img src="regatta.jpg" alt="Pack gathered on bridge over water" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300" />
+        </div>
+        <div class="rounded-xl overflow-hidden aspect-square shadow border border-pack-border">
+          <img src="service.jpeg" alt="Scout placing Memorial Day flag" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FREQUENTLY ASKED QUESTIONS ================= -->
+  <section id="faq" class="py-20 bg-pack-cream border-t border-pack-border">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center mb-12 space-y-2">
+        <span class="text-pack-orange font-bold text-xs uppercase tracking-widest">Common Questions</span>
+        <h2 class="font-heading text-3xl font-extrabold text-pack-navy">Everything Parents Need to Know</h2>
+        <p class="text-pack-dark/80 text-sm">No gatekeeping, no surprises. Here is how simple it is to get started.</p>
+      </div>
+
+      <div class="space-y-4">
+        
+        <details class="group bg-white rounded-2xl p-6 shadow-sm border border-pack-border" open>
+          <summary class="flex justify-between items-center font-heading font-bold text-lg text-pack-navy cursor-pointer list-none">
+            <span>Do parents or kids need any outdoor or camping experience?</span>
+            <span class="text-pack-gold text-2xl group-open:rotate-45 transition-transform">+</span>
+          </summary>
+          <div class="mt-4 text-pack-dark/80 text-sm leading-relaxed border-t border-pack-border pt-4">
+            No, not at all! Even if your family has never pitched a tent or taken a hike before, you are welcome here. We teach every skill step-by-step in a safe, supportive environment. The Cub Scout motto is <em>"Do Your Best"</em>—and have fun doing it!
+          </div>
+        </details>
+
+        <details class="group bg-white rounded-2xl p-6 shadow-sm border border-pack-border">
+          <summary class="flex justify-between items-center font-heading font-bold text-lg text-pack-navy cursor-pointer list-none">
+            <span>What is the meeting schedule and time commitment?</span>
+            <span class="text-pack-gold text-2xl group-open:rotate-45 transition-transform">+</span>
+          </summary>
+          <div class="mt-4 text-pack-dark/80 text-sm leading-relaxed border-t border-pack-border pt-4">
+            We know families have sports, music, and busy homework routines. Pack 170 typically meets 2 to 3 times per month during the school year, with one optional weekend outing (like a hike, campfire, or service project). Scouting works alongside sports and other activities!
+          </div>
+        </details>
+
+        <details class="group bg-white rounded-2xl p-6 shadow-sm border border-pack-border">
+          <summary class="flex justify-between items-center font-heading font-bold text-lg text-pack-navy cursor-pointer list-none">
+            <span>Can girls join Pack 170?</span>
+            <span class="text-pack-gold text-2xl group-open:rotate-45 transition-transform">+</span>
+          </summary>
+          <div class="mt-4 text-pack-dark/80 text-sm leading-relaxed border-t border-pack-border pt-4">
+            Yes! Cub Scouting is fully open to both boys and girls in Kindergarten through 5th Grade. We are proud to be a family-first pack where brothers and sisters can participate together.
+          </div>
+        </details>
+
+        <details class="group bg-white rounded-2xl p-6 shadow-sm border border-pack-border">
+          <summary class="flex justify-between items-center font-heading font-bold text-lg text-pack-navy cursor-pointer list-none">
+            <span>Can we attend a meeting before officially registering?</span>
+            <span class="text-pack-gold text-2xl group-open:rotate-45 transition-transform">+</span>
+          </summary>
+          <div class="mt-4 text-pack-dark/80 text-sm leading-relaxed border-t border-pack-border pt-4">
+            Absolutely. In fact, we encourage it! Fill out the short form below and our leadership team will invite your family to an upcoming meeting or outdoor hike so your child can experience the fun firsthand.
+          </div>
+        </details>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= INQUIRY FORM (NETLIFY) ================= -->
+  <section id="contact" class="py-20 bg-pack-navy text-white relative overflow-hidden">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      
+      <div class="bg-pack-dark border border-pack-teal/40 rounded-3xl p-8 sm:p-12 shadow-2xl">
+        <div class="text-center max-w-xl mx-auto space-y-3 mb-10">
+          <span class="text-pack-gold font-bold text-xs uppercase tracking-widest">Get In Touch</span>
+          <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-white">Have Questions or Want to Visit?</h2>
+          <p class="text-pack-cream/80 text-sm">
+            Send us a message and our Cubmaster will reach out directly. You can also email us anytime at <a href="mailto:cspack170ct@gmail.com" class="text-pack-gold underline">cspack170ct@gmail.com</a>.
+          </p>
+        </div>
+
+        <form name="pack170-inquiry" method="POST" data-netlify="true" class="space-y-6">
+          <input type="hidden" name="form-name" value="pack170-inquiry" />
+          
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-xs font-bold uppercase tracking-wider text-pack-cream/90 mb-2">Parent / Guardian Name *</label>
+              <input type="text" name="parent_name" required placeholder="Jane Doe" class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/40 focus:outline-none focus:border-pack-gold" />
+            </div>
+            <div>
+              <label class="block text-xs font-bold uppercase tracking-wider text-pack-cream/90 mb-2">Email Address *</label>
+              <input type="email" name="email" required placeholder="you@example.com" class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/40 focus:outline-none focus:border-pack-gold" />
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-xs font-bold uppercase tracking-wider text-pack-cream/90 mb-2">Child's Current Grade</label>
+              <select name="grade" class="w-full bg-pack-navy border border-white/20 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-pack-gold">
+                <option value="Kindergarten">Kindergarten (Lions)</option>
+                <option value="1st Grade">1st Grade (Tigers)</option>
+                <option value="2nd Grade">2nd Grade (Wolves)</option>
+                <option value="3rd Grade">3rd Grade (Bears)</option>
+                <option value="4th Grade">4th Grade (Webelos)</option>
+                <option value="5th Grade">5th Grade (Arrow of Light)</option>
+                <option value="Multiple Children">Multiple Children</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-xs font-bold uppercase tracking-wider text-pack-cream/90 mb-2">Phone Number (Optional)</label>
+              <input type="tel" name="phone" placeholder="(860) 555-0199" class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/40 focus:outline-none focus:border-pack-gold" />
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold uppercase tracking-wider text-pack-cream/90 mb-2">How Can We Help?</label>
+            <textarea name="message" rows="3" placeholder="Tell us what you're looking for, or let us know when you'd like to visit a meeting..." class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/40 focus:outline-none focus:border-pack-gold"></textarea>
+          </div>
+
+          <button type="submit" class="w-full py-4 bg-pack-gold hover:bg-pack-orange text-pack-dark font-heading font-extrabold text-base rounded-xl shadow-lg transition-all transform hover:-translate-y-0.5">
+            Send Message to Pack 170 Leadership
+          </button>
+        </form>
+
+        <div class="mt-8 pt-6 border-t border-white/10 text-center flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-pack-cream/70">
+          <span>Ready to register immediately?</span>
+          <a href="https://beascout.scouting.org/units/b245a983-8526-40a3-ae25-b263af4e329d" target="_blank" rel="noopener noreferrer" class="font-bold text-pack-gold hover:underline flex items-center gap-1">
+            Official BSA Online Registration Portal (Be A Scout) →
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="bg-pack-dark text-pack-cream/70 py-12 border-t border-white/10 text-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+      
+      <div class="flex items-center gap-3">
+        <img src="logo.jpg" alt="Pack 170 Shield" class="h-10 w-auto rounded shadow-sm" />
+        <div>
+          <div class="font-heading font-bold text-white text-base">Cub Scout Pack 170</div>
+          <div class="text-xs">Serving Unionville & Farmington, Connecticut</div>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-6 text-xs">
+        <a href="https://www.facebook.com/profile.php?id=61555280236028" target="_blank" rel="noopener noreferrer" class="text-white hover:text-pack-gold transition-colors">Facebook</a>
+        <a href="https://beascout.scouting.org/units/b245a983-8526-40a3-ae25-b263af4e329d" target="_blank" rel="noopener noreferrer" class="text-white hover:text-pack-gold transition-colors">Be A Scout Portal</a>
+        <a href="mailto:cspack170ct@gmail.com" class="text-white hover:text-pack-gold transition-colors">cspack170ct@gmail.com</a>
+      </div>
+
+      <div class="text-xs text-center md:text-right">
+        &copy; 2026 Cub Scout Pack 170. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
