@@ -333,7 +333,7 @@
     </div>
   </section>
 
-<!-- ================= NEWS & COMMUNITY SPOTLIGHT ================= -->
+  <!-- ================= NEWS & COMMUNITY SPOTLIGHT ================= -->
   <section id="news" class="py-20 bg-pack-cream border-t border-pack-border">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
@@ -493,9 +493,23 @@
           </p>
         </div>
 
-        <!-- Netlify Automated Form -->
-        <form name="pack170-inquiry" method="POST" data-netlify="true" class="space-y-6">
+        <!-- Success Notification Banner (Appears after submission) -->
+        <div id="success-banner" class="hidden mb-8 p-5 bg-pack-green/20 border border-pack-green rounded-2xl text-center">
+          <div class="flex items-center justify-center gap-2 text-pack-green font-bold text-lg">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+            <span>Thank you! Your message has been sent.</span>
+          </div>
+          <p class="text-sm text-pack-cream/90 mt-1">Our Pack 170 leadership will be in touch with you shortly.</p>
+        </div>
+
+        <!-- Automated Netlify Form -->
+        <form name="pack170-inquiry" method="POST" action="/?success=true#contact" data-netlify="true" netlify-honeypot="bot-field" class="space-y-6">
           <input type="hidden" name="form-name" value="pack170-inquiry" />
+          
+          <!-- Bot Field Honeypot for Netlify Spam Protection -->
+          <p class="hidden">
+            <label>Don’t fill this out if you’re human: <input name="bot-field" /></label>
+          </p>
           
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div>
@@ -571,6 +585,16 @@
       </div>
     </div>
   </footer>
+
+  <!-- Script to show success banner on form return -->
+  <script>
+    if (window.location.search.includes('success=true')) {
+      const banner = document.getElementById('success-banner');
+      if (banner) {
+        banner.classList.remove('hidden');
+      }
+    }
+  </script>
 
 </body>
 </html>
