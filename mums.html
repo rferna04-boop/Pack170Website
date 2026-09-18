@@ -70,12 +70,13 @@
       <nav class="hidden md:flex items-center gap-8 font-medium text-sm">
         <a href="index.html" class="text-white/90 hover:text-pack-gold transition-colors">← Back to Pack Home</a>
         <a href="#products" class="text-white/90 hover:text-pack-gold transition-colors">Select Colors</a>
-        <a href="#order-form" class="text-white/90 hover:text-pack-gold transition-colors">Order Form</a>
+        <a href="#order-form" class="text-white/90 hover:text-pack-gold transition-colors">Checkout</a>
       </nav>
 
       <div>
-        <a href="#order-form" class="bg-pack-gold hover:bg-pack-orange text-pack-dark font-heading font-bold text-sm px-5 py-2.5 rounded-full shadow-md hover:shadow-lg transition-all transform hover:-translate-y-0.5">
-          Order Mums
+        <a href="#order-form" class="bg-pack-gold hover:bg-pack-orange text-pack-dark font-heading font-bold text-sm px-5 py-2.5 rounded-full shadow-md hover:shadow-lg transition-all transform hover:-translate-y-0.5 flex items-center gap-2">
+          <span>Checkout</span>
+          <span id="nav-badge" class="hidden bg-pack-dark text-white text-xs px-2 py-0.5 rounded-full font-bold">0</span>
         </a>
       </div>
     </div>
@@ -113,121 +114,154 @@
     </div>
   </section>
 
-  <!-- PRODUCT CARDS -->
+  <!-- PRODUCT CARDS WITH INLINE QUANTITY STEPPERS -->
   <section id="products" class="py-16 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center max-w-2xl mx-auto mb-12 space-y-2">
-        <h2 class="font-heading text-3xl font-extrabold text-pack-navy">Choose Your Mum Colors</h2>
-        <p class="text-sm text-pack-dark/70">Each mum arrives planted in a sturdy 9-inch grower pot, grown locally by Mapletree Nursery.</p>
+        <h2 class="font-heading text-3xl font-extrabold text-pack-navy">1. Select Your Mum Colors</h2>
+        <p class="text-sm text-pack-dark/70">Pick your quantities below. Each mum is grown locally by Mapletree Nursery in a 9-inch grower pot.</p>
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
         
         <!-- White -->
-        <div class="bg-pack-cream rounded-2xl overflow-hidden border border-pack-border flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow group">
+        <div class="bg-pack-cream rounded-2xl overflow-hidden border border-pack-border flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow">
           <div class="relative aspect-square overflow-hidden bg-slate-100">
-            <img src="mum-white.jpg" alt="Crisp White Potted Mum" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+            <img src="mum-white.jpg" alt="Crisp White Potted Mum" class="w-full h-full object-cover" />
             <div class="absolute inset-x-0 bottom-0 bg-pack-dark/85 backdrop-blur-xs py-1.5 px-2 text-center">
               <span class="text-[9px] uppercase tracking-wider text-pack-gold font-bold block">Visual Preview Only</span>
               <span class="text-[8px] text-white/90 block leading-tight">Actual 9" nursery plant may vary</span>
             </div>
           </div>
           <div class="p-4 text-center flex-1 flex flex-col justify-between">
-            <div>
+            <div class="mb-3">
               <h3 class="font-heading font-bold text-lg text-pack-navy">Crisp White</h3>
               <p class="text-xs text-pack-dark/70 mt-0.5">9" Grower Pot • $15</p>
             </div>
-            <button type="button" onclick="bumpColor('white', 1)" class="mt-3 w-full py-2 bg-white hover:bg-pack-gold text-pack-navy font-bold text-xs rounded-lg border border-pack-border transition-colors">
-              + Add to Order
-            </button>
+            
+            <!-- Quantity Counter -->
+            <div class="flex items-center justify-center bg-white border border-pack-border rounded-xl p-1 shadow-inner">
+              <button type="button" onclick="adjustQty('white', -1)" class="w-9 h-9 rounded-lg bg-pack-cream hover:bg-pack-gold text-pack-navy font-bold text-lg transition-colors flex items-center justify-center">-</button>
+              <input type="number" id="qty-white" value="0" min="0" oninput="calcTotal()" class="w-12 text-center font-bold text-pack-navy bg-transparent text-base focus:outline-none" />
+              <button type="button" onclick="adjustQty('white', 1)" class="w-9 h-9 rounded-lg bg-pack-cream hover:bg-pack-gold text-pack-navy font-bold text-lg transition-colors flex items-center justify-center">+</button>
+            </div>
           </div>
         </div>
 
         <!-- Red -->
-        <div class="bg-pack-cream rounded-2xl overflow-hidden border border-pack-border flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow group">
+        <div class="bg-pack-cream rounded-2xl overflow-hidden border border-pack-border flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow">
           <div class="relative aspect-square overflow-hidden bg-slate-100">
-            <img src="mum-red.jpg" alt="Deep Red Potted Mum" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+            <img src="mum-red.jpg" alt="Deep Red Potted Mum" class="w-full h-full object-cover" />
             <div class="absolute inset-x-0 bottom-0 bg-pack-dark/85 backdrop-blur-xs py-1.5 px-2 text-center">
               <span class="text-[9px] uppercase tracking-wider text-pack-gold font-bold block">Visual Preview Only</span>
               <span class="text-[8px] text-white/90 block leading-tight">Actual 9" nursery plant may vary</span>
             </div>
           </div>
           <div class="p-4 text-center flex-1 flex flex-col justify-between">
-            <div>
+            <div class="mb-3">
               <h3 class="font-heading font-bold text-lg text-pack-navy">Deep Red</h3>
               <p class="text-xs text-pack-dark/70 mt-0.5">9" Grower Pot • $15</p>
             </div>
-            <button type="button" onclick="bumpColor('red', 1)" class="mt-3 w-full py-2 bg-white hover:bg-pack-gold text-pack-navy font-bold text-xs rounded-lg border border-pack-border transition-colors">
-              + Add to Order
-            </button>
+            
+            <!-- Quantity Counter -->
+            <div class="flex items-center justify-center bg-white border border-pack-border rounded-xl p-1 shadow-inner">
+              <button type="button" onclick="adjustQty('red', -1)" class="w-9 h-9 rounded-lg bg-pack-cream hover:bg-pack-gold text-pack-navy font-bold text-lg transition-colors flex items-center justify-center">-</button>
+              <input type="number" id="qty-red" value="0" min="0" oninput="calcTotal()" class="w-12 text-center font-bold text-pack-navy bg-transparent text-base focus:outline-none" />
+              <button type="button" onclick="adjustQty('red', 1)" class="w-9 h-9 rounded-lg bg-pack-cream hover:bg-pack-gold text-pack-navy font-bold text-lg transition-colors flex items-center justify-center">+</button>
+            </div>
           </div>
         </div>
 
         <!-- Yellow -->
-        <div class="bg-pack-cream rounded-2xl overflow-hidden border border-pack-border flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow group">
+        <div class="bg-pack-cream rounded-2xl overflow-hidden border border-pack-border flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow">
           <div class="relative aspect-square overflow-hidden bg-slate-100">
-            <img src="mum-yellow.jpg" alt="Golden Yellow Potted Mum" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+            <img src="mum-yellow.jpg" alt="Golden Yellow Potted Mum" class="w-full h-full object-cover" />
             <div class="absolute inset-x-0 bottom-0 bg-pack-dark/85 backdrop-blur-xs py-1.5 px-2 text-center">
               <span class="text-[9px] uppercase tracking-wider text-pack-gold font-bold block">Visual Preview Only</span>
               <span class="text-[8px] text-white/90 block leading-tight">Actual 9" nursery plant may vary</span>
             </div>
           </div>
           <div class="p-4 text-center flex-1 flex flex-col justify-between">
-            <div>
+            <div class="mb-3">
               <h3 class="font-heading font-bold text-lg text-pack-navy">Golden Yellow</h3>
               <p class="text-xs text-pack-dark/70 mt-0.5">9" Grower Pot • $15</p>
             </div>
-            <button type="button" onclick="bumpColor('yellow', 1)" class="mt-3 w-full py-2 bg-white hover:bg-pack-gold text-pack-navy font-bold text-xs rounded-lg border border-pack-border transition-colors">
-              + Add to Order
-            </button>
+            
+            <!-- Quantity Counter -->
+            <div class="flex items-center justify-center bg-white border border-pack-border rounded-xl p-1 shadow-inner">
+              <button type="button" onclick="adjustQty('yellow', -1)" class="w-9 h-9 rounded-lg bg-pack-cream hover:bg-pack-gold text-pack-navy font-bold text-lg transition-colors flex items-center justify-center">-</button>
+              <input type="number" id="qty-yellow" value="0" min="0" oninput="calcTotal()" class="w-12 text-center font-bold text-pack-navy bg-transparent text-base focus:outline-none" />
+              <button type="button" onclick="adjustQty('yellow', 1)" class="w-9 h-9 rounded-lg bg-pack-cream hover:bg-pack-gold text-pack-navy font-bold text-lg transition-colors flex items-center justify-center">+</button>
+            </div>
           </div>
         </div>
 
         <!-- Orange -->
-        <div class="bg-pack-cream rounded-2xl overflow-hidden border border-pack-border flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow group">
+        <div class="bg-pack-cream rounded-2xl overflow-hidden border border-pack-border flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow">
           <div class="relative aspect-square overflow-hidden bg-slate-100">
-            <img src="mum-orange.jpg" alt="Harvest Orange Potted Mum" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+            <img src="mum-orange.jpg" alt="Harvest Orange Potted Mum" class="w-full h-full object-cover" />
             <div class="absolute inset-x-0 bottom-0 bg-pack-dark/85 backdrop-blur-xs py-1.5 px-2 text-center">
               <span class="text-[9px] uppercase tracking-wider text-pack-gold font-bold block">Visual Preview Only</span>
               <span class="text-[8px] text-white/90 block leading-tight">Actual 9" nursery plant may vary</span>
             </div>
           </div>
           <div class="p-4 text-center flex-1 flex flex-col justify-between">
-            <div>
+            <div class="mb-3">
               <h3 class="font-heading font-bold text-lg text-pack-navy">Harvest Orange</h3>
               <p class="text-xs text-pack-dark/70 mt-0.5">9" Grower Pot • $15</p>
             </div>
-            <button type="button" onclick="bumpColor('orange', 1)" class="mt-3 w-full py-2 bg-white hover:bg-pack-gold text-pack-navy font-bold text-xs rounded-lg border border-pack-border transition-colors">
-              + Add to Order
-            </button>
+            
+            <!-- Quantity Counter -->
+            <div class="flex items-center justify-center bg-white border border-pack-border rounded-xl p-1 shadow-inner">
+              <button type="button" onclick="adjustQty('orange', -1)" class="w-9 h-9 rounded-lg bg-pack-cream hover:bg-pack-gold text-pack-navy font-bold text-lg transition-colors flex items-center justify-center">-</button>
+              <input type="number" id="qty-orange" value="0" min="0" oninput="calcTotal()" class="w-12 text-center font-bold text-pack-navy bg-transparent text-base focus:outline-none" />
+              <button type="button" onclick="adjustQty('orange', 1)" class="w-9 h-9 rounded-lg bg-pack-cream hover:bg-pack-gold text-pack-navy font-bold text-lg transition-colors flex items-center justify-center">+</button>
+            </div>
           </div>
         </div>
 
         <!-- Purple -->
-        <div class="bg-pack-cream rounded-2xl overflow-hidden border border-pack-border flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow group">
+        <div class="bg-pack-cream rounded-2xl overflow-hidden border border-pack-border flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow">
           <div class="relative aspect-square overflow-hidden bg-slate-100">
-            <img src="mum-purple.jpg" alt="Royal Purple Potted Mum" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+            <img src="mum-purple.jpg" alt="Royal Purple Potted Mum" class="w-full h-full object-cover" />
             <div class="absolute inset-x-0 bottom-0 bg-pack-dark/85 backdrop-blur-xs py-1.5 px-2 text-center">
               <span class="text-[9px] uppercase tracking-wider text-pack-gold font-bold block">Visual Preview Only</span>
               <span class="text-[8px] text-white/90 block leading-tight">Actual 9" nursery plant may vary</span>
             </div>
           </div>
           <div class="p-4 text-center flex-1 flex flex-col justify-between">
-            <div>
+            <div class="mb-3">
               <h3 class="font-heading font-bold text-lg text-pack-navy">Royal Purple</h3>
               <p class="text-xs text-pack-dark/70 mt-0.5">9" Grower Pot • $15</p>
             </div>
-            <button type="button" onclick="bumpColor('purple', 1)" class="mt-3 w-full py-2 bg-white hover:bg-pack-gold text-pack-navy font-bold text-xs rounded-lg border border-pack-border transition-colors">
-              + Add to Order
-            </button>
+            
+            <!-- Quantity Counter -->
+            <div class="flex items-center justify-center bg-white border border-pack-border rounded-xl p-1 shadow-inner">
+              <button type="button" onclick="adjustQty('purple', -1)" class="w-9 h-9 rounded-lg bg-pack-cream hover:bg-pack-gold text-pack-navy font-bold text-lg transition-colors flex items-center justify-center">-</button>
+              <input type="number" id="qty-purple" value="0" min="0" oninput="calcTotal()" class="w-12 text-center font-bold text-pack-navy bg-transparent text-base focus:outline-none" />
+              <button type="button" onclick="adjustQty('purple', 1)" class="w-9 h-9 rounded-lg bg-pack-cream hover:bg-pack-gold text-pack-navy font-bold text-lg transition-colors flex items-center justify-center">+</button>
+            </div>
           </div>
         </div>
 
       </div>
+
+      <!-- Quick Action Bar -->
+      <div class="mt-12 p-6 bg-pack-navy text-white rounded-2xl max-w-2xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4 shadow-xl border border-pack-teal/30">
+        <div>
+          <div class="text-xs text-pack-cream/80 uppercase tracking-wider">Your Order Total</div>
+          <div class="text-2xl font-heading font-extrabold text-pack-gold">
+            <span id="card-total-plants">0</span> Mums • <span id="card-total-cost">$0.00</span>
+          </div>
+        </div>
+        <a href="#order-form" class="w-full sm:w-auto text-center px-6 py-3 bg-pack-gold hover:bg-pack-orange text-pack-dark font-heading font-extrabold rounded-xl shadow transition-all">
+          Proceed to Checkout ↓
+        </a>
+      </div>
     </div>
   </section>
 
-  <!-- ORDER FORM -->
+  <!-- CHECKOUT & SUPPORTER INFORMATION -->
   <section id="order-form" class="py-16 bg-pack-navy text-white">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       
@@ -235,9 +269,9 @@
         
         <div class="text-center max-w-xl mx-auto mb-8 space-y-2">
           <span class="text-pack-gold font-bold text-xs uppercase tracking-widest">Farmington & Unionville Addresses Only</span>
-          <h2 class="font-heading text-3xl font-extrabold text-white">Place Your Mum Order</h2>
+          <h2 class="font-heading text-3xl font-extrabold text-white">2. Complete Your Order</h2>
           <p class="text-pack-cream/80 text-xs">
-            After submitting, you will receive a unique receipt number for your Venmo payment memo.
+            Review your order summary below, enter your delivery address, and submit to generate your Venmo memo.
           </p>
         </div>
 
@@ -272,41 +306,30 @@
         <!-- FORM -->
         <form id="mum-form" onsubmit="submitMumOrder(event)" class="space-y-8">
           
-          <!-- Quantities -->
-          <div>
-            <h4 class="text-xs font-bold uppercase tracking-wider text-pack-gold mb-3">1. Select Quantities ($15 each)</h4>
-            <div class="grid grid-cols-2 sm:grid-cols-5 gap-3">
-              <div class="bg-white/5 border border-white/10 p-3 rounded-xl text-center">
-                <label class="block text-xs font-bold text-white mb-1">White</label>
-                <input type="number" id="qty-white" min="0" value="0" oninput="calcTotal()" class="w-full bg-white/10 border border-white/20 rounded-lg text-center py-2 text-white font-bold" />
-              </div>
-              <div class="bg-white/5 border border-white/10 p-3 rounded-xl text-center">
-                <label class="block text-xs font-bold text-white mb-1">Red</label>
-                <input type="number" id="qty-red" min="0" value="0" oninput="calcTotal()" class="w-full bg-white/10 border border-white/20 rounded-lg text-center py-2 text-white font-bold" />
-              </div>
-              <div class="bg-white/5 border border-white/10 p-3 rounded-xl text-center">
-                <label class="block text-xs font-bold text-white mb-1">Yellow</label>
-                <input type="number" id="qty-yellow" min="0" value="0" oninput="calcTotal()" class="w-full bg-white/10 border border-white/20 rounded-lg text-center py-2 text-white font-bold" />
-              </div>
-              <div class="bg-white/5 border border-white/10 p-3 rounded-xl text-center">
-                <label class="block text-xs font-bold text-white mb-1">Orange</label>
-                <input type="number" id="qty-orange" min="0" value="0" oninput="calcTotal()" class="w-full bg-white/10 border border-white/20 rounded-lg text-center py-2 text-white font-bold" />
-              </div>
-              <div class="bg-white/5 border border-white/10 p-3 rounded-xl text-center col-span-2 sm:col-span-1">
-                <label class="block text-xs font-bold text-white mb-1">Purple</label>
-                <input type="number" id="qty-purple" min="0" value="0" oninput="calcTotal()" class="w-full bg-white/10 border border-white/20 rounded-lg text-center py-2 text-white font-bold" />
-              </div>
+          <!-- Order Summary Breakdown (Synchronized with cards above) -->
+          <div class="bg-white/5 border border-white/10 p-4 sm:p-6 rounded-2xl">
+            <div class="flex justify-between items-center mb-3">
+              <h4 class="text-xs font-bold uppercase tracking-wider text-pack-gold">Order Summary</h4>
+              <a href="#products" class="text-xs text-pack-cream/70 underline hover:text-white">Change Quantities ↑</a>
+            </div>
+            
+            <div id="summary-empty-msg" class="text-sm text-pack-cream/60 italic py-2">
+              No mums selected yet. Use the [+] buttons on the cards above to select colors.
             </div>
 
-            <div class="mt-4 p-4 bg-pack-navy rounded-xl border border-pack-teal/40 flex justify-between items-center text-sm font-bold">
-              <div>Total Plants: <span id="summary-plants" class="text-pack-gold">0</span></div>
-              <div>Total Due: <span id="summary-cost" class="text-pack-gold text-lg">$0.00</span></div>
+            <div id="summary-items-list" class="space-y-1.5 text-sm hidden border-b border-white/10 pb-3 mb-3">
+              <!-- Populated dynamically -->
+            </div>
+
+            <div class="flex justify-between items-center font-bold text-base pt-1">
+              <div>Total Due:</div>
+              <div id="summary-cost-display" class="text-pack-gold text-xl">$0.00</div>
             </div>
           </div>
 
           <!-- Supporter Info -->
           <div>
-            <h4 class="text-xs font-bold uppercase tracking-wider text-pack-gold mb-3">2. Supporter Information</h4>
+            <h4 class="text-xs font-bold uppercase tracking-wider text-pack-gold mb-3">Supporter Information</h4>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label class="block text-xs font-semibold text-pack-cream/90 mb-1">Full Name *</label>
@@ -330,9 +353,9 @@
             </div>
           </div>
 
-          <!-- Delivery Address -->
+          <!-- Delivery Details -->
           <div>
-            <h4 class="text-xs font-bold uppercase tracking-wider text-pack-gold mb-3">3. Delivery Address</h4>
+            <h4 class="text-xs font-bold uppercase tracking-wider text-pack-gold mb-3">Delivery Address</h4>
             <div class="space-y-4">
               <div>
                 <label class="block text-xs font-semibold text-pack-cream/90 mb-1">Street Address *</label>
@@ -373,7 +396,16 @@
     </div>
   </footer>
 
+  <!-- DYNAMIC SYNC & SUBMISSION SCRIPT -->
   <script>
+    function adjustQty(color, delta) {
+      const input = document.getElementById('qty-' + color);
+      let currentVal = parseInt(input.value) || 0;
+      let newVal = Math.max(0, currentVal + delta);
+      input.value = newVal;
+      calcTotal();
+    }
+
     function calcTotal() {
       const white = parseInt(document.getElementById('qty-white').value) || 0;
       const red = parseInt(document.getElementById('qty-red').value) || 0;
@@ -384,18 +416,44 @@
       const totalPlants = white + red + yellow + orange + purple;
       const totalDue = totalPlants * 15;
 
-      document.getElementById('summary-plants').innerText = totalPlants;
-      document.getElementById('summary-cost').innerText = '$' + totalDue.toFixed(2);
+      // Update card bar & header badge
+      document.getElementById('card-total-plants').innerText = totalPlants;
+      document.getElementById('card-total-cost').innerText = '$' + totalDue.toFixed(2);
+      
+      const navBadge = document.getElementById('nav-badge');
+      if (totalPlants > 0) {
+        navBadge.innerText = totalPlants;
+        navBadge.classList.remove('hidden');
+      } else {
+        navBadge.classList.add('hidden');
+      }
+
+      // Update checkout summary section
+      const emptyMsg = document.getElementById('summary-empty-msg');
+      const itemsList = document.getElementById('summary-items-list');
+      const costDisplay = document.getElementById('summary-cost-display');
+
+      costDisplay.innerText = '$' + totalDue.toFixed(2);
+
+      if (totalPlants === 0) {
+        emptyMsg.classList.remove('hidden');
+        itemsList.classList.add('hidden');
+        itemsList.innerHTML = '';
+      } else {
+        emptyMsg.classList.add('hidden');
+        itemsList.classList.remove('hidden');
+        
+        let html = '';
+        if (white > 0) html += `<div class="flex justify-between"><span>Crisp White (×${white})</span><span>$${white * 15}.00</span></div>`;
+        if (red > 0) html += `<div class="flex justify-between"><span>Deep Red (×${red})</span><span>$${red * 15}.00</span></div>`;
+        if (yellow > 0) html += `<div class="flex justify-between"><span>Golden Yellow (×${yellow})</span><span>$${yellow * 15}.00</span></div>`;
+        if (orange > 0) html += `<div class="flex justify-between"><span>Harvest Orange (×${orange})</span><span>$${orange * 15}.00</span></div>`;
+        if (purple > 0) html += `<div class="flex justify-between"><span>Royal Purple (×${purple})</span><span>$${purple * 15}.00</span></div>`;
+        
+        itemsList.innerHTML = html;
+      }
 
       return { white, red, yellow, orange, purple, totalPlants, totalDue };
-    }
-
-    function bumpColor(color, amount) {
-      const input = document.getElementById('qty-' + color);
-      let val = parseInt(input.value) || 0;
-      input.value = Math.max(0, val + amount);
-      calcTotal();
-      document.getElementById('order-form').scrollIntoView({ behavior: 'smooth' });
     }
 
     async function submitMumOrder(event) {
@@ -406,8 +464,9 @@
       const { white, red, yellow, orange, purple, totalPlants, totalDue } = calcTotal();
 
       if (totalPlants <= 0) {
-        errBox.innerText = "Please select at least 1 mum to order.";
+        errBox.innerText = "Please select at least 1 mum to order using the [+] buttons on the color cards above.";
         errBox.classList.remove('hidden');
+        document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
         return;
       }
 
