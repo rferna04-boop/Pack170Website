@@ -40,7 +40,7 @@
 
 <body class="bg-pack-cream text-pack-dark font-sans antialiased selection:bg-pack-gold selection:text-pack-dark">
 
-  <!-- ================= TOP UTILITY BAR ================= -->
+  <!-- TOP UTILITY BAR -->
   <div class="bg-pack-dark text-pack-cream/90 text-xs py-2 px-4 border-b border-white/10">
     <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2 text-center sm:text-left">
       <div class="flex items-center gap-2">
@@ -55,11 +55,10 @@
     </div>
   </div>
 
-  <!-- ================= HEADER & NAV ================= -->
+  <!-- HEADER & NAV -->
   <header class="sticky top-0 z-50 bg-pack-navy/95 backdrop-blur-md text-white shadow-lg border-b border-pack-teal/30">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
       
-      <!-- Logo Lockup (Fixed relative link) -->
       <a href="index.html" class="flex items-center gap-3.5 group">
         <img src="logo.jpg" alt="Cub Scout Pack 170 Shield" class="h-14 w-auto rounded-lg shadow-sm border border-pack-gold/30 group-hover:scale-105 transition-transform" />
         <div class="flex flex-col">
@@ -68,7 +67,6 @@
         </div>
       </a>
 
-      <!-- Navigation Links (Fixed relative link) -->
       <nav class="hidden md:flex items-center gap-8 font-medium text-sm">
         <a href="index.html" class="text-white/90 hover:text-pack-gold transition-colors">← Back to Pack Home</a>
         <a href="#products" class="text-white/90 hover:text-pack-gold transition-colors">Select Colors</a>
@@ -83,7 +81,7 @@
     </div>
   </header>
 
-  <!-- ================= HERO ================= -->
+  <!-- HERO -->
   <section class="relative overflow-hidden pt-12 pb-16 bg-gradient-to-b from-pack-cream via-white to-pack-cream border-b border-pack-border">
     <div class="max-w-4xl mx-auto px-4 text-center space-y-5">
       <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-pack-navy text-pack-gold text-xs font-bold uppercase tracking-wider shadow-sm">
@@ -115,7 +113,7 @@
     </div>
   </section>
 
-  <!-- ================= PRODUCT CARDS ================= -->
+  <!-- PRODUCT CARDS -->
   <section id="products" class="py-16 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center max-w-2xl mx-auto mb-12 space-y-2">
@@ -229,7 +227,7 @@
     </div>
   </section>
 
-  <!-- ================= ORDER FORM ================= -->
+  <!-- ORDER FORM -->
   <section id="order-form" class="py-16 bg-pack-navy text-white">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       
@@ -332,7 +330,7 @@
             </div>
           </div>
 
-          <!-- Delivery Details -->
+          <!-- Delivery Address -->
           <div>
             <h4 class="text-xs font-bold uppercase tracking-wider text-pack-gold mb-3">3. Delivery Address</h4>
             <div class="space-y-4">
@@ -359,7 +357,7 @@
     </div>
   </section>
 
-  <!-- ================= FOOTER ================= -->
+  <!-- FOOTER -->
   <footer class="bg-pack-dark text-pack-cream/70 py-10 border-t border-white/10 text-sm">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
       <div class="flex items-center gap-3">
@@ -375,7 +373,6 @@
     </div>
   </footer>
 
-  <!-- ================= SCRIPT ================= -->
   <script>
     function calcTotal() {
       const white = parseInt(document.getElementById('qty-white').value) || 0;
