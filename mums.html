@@ -40,7 +40,7 @@
 
 <body class="bg-pack-cream text-pack-dark font-sans antialiased selection:bg-pack-gold selection:text-pack-dark">
 
-  <!-- TOP BAR -->
+  <!-- ================= TOP UTILITY BAR ================= -->
   <div class="bg-pack-dark text-pack-cream/90 text-xs py-2 px-4 border-b border-white/10">
     <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2 text-center sm:text-left">
       <div class="flex items-center gap-2">
@@ -48,16 +48,18 @@
         <span>Orders Due: <strong>September 30, 2026</strong> • Porch Delivery: <strong>Mid-October</strong></span>
       </div>
       <div class="flex items-center gap-4">
-        <span>Delivery to <strong>06032 & 06085</strong> only</span>
+        <span>Delivery restricted strictly to <strong>06032 & 06085</strong></span>
         <span>•</span>
         <a href="mailto:Pack170Fundraiser@gmail.com" class="hover:text-pack-gold transition-colors">Pack170Fundraiser@gmail.com</a>
       </div>
     </div>
   </div>
 
-  <!-- HEADER -->
+  <!-- ================= HEADER & NAV ================= -->
   <header class="sticky top-0 z-50 bg-pack-navy/95 backdrop-blur-md text-white shadow-lg border-b border-pack-teal/30">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Logo Lockup (Fixed relative link) -->
       <a href="index.html" class="flex items-center gap-3.5 group">
         <img src="logo.jpg" alt="Cub Scout Pack 170 Shield" class="h-14 w-auto rounded-lg shadow-sm border border-pack-gold/30 group-hover:scale-105 transition-transform" />
         <div class="flex flex-col">
@@ -66,6 +68,7 @@
         </div>
       </a>
 
+      <!-- Navigation Links (Fixed relative link) -->
       <nav class="hidden md:flex items-center gap-8 font-medium text-sm">
         <a href="index.html" class="text-white/90 hover:text-pack-gold transition-colors">← Back to Pack Home</a>
         <a href="#products" class="text-white/90 hover:text-pack-gold transition-colors">Select Colors</a>
@@ -80,7 +83,7 @@
     </div>
   </header>
 
-  <!-- HERO -->
+  <!-- ================= HERO ================= -->
   <section class="relative overflow-hidden pt-12 pb-16 bg-gradient-to-b from-pack-cream via-white to-pack-cream border-b border-pack-border">
     <div class="max-w-4xl mx-auto px-4 text-center space-y-5">
       <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-pack-navy text-pack-gold text-xs font-bold uppercase tracking-wider shadow-sm">
@@ -102,37 +105,40 @@
         </div>
         <div class="bg-white p-4 rounded-xl border border-pack-border shadow-sm">
           <div class="font-heading font-bold text-pack-navy text-base">Free Porch Delivery</div>
-          <div class="text-xs text-pack-dark/70 mt-1">Scout families deliver to Unionville & Farmington (06032, 06085).</div>
+          <div class="text-xs text-pack-dark/70 mt-1">Delivered to your door in Unionville & Farmington (06032, 06085).</div>
         </div>
         <div class="bg-white p-4 rounded-xl border border-pack-border shadow-sm">
-          <div class="font-heading font-bold text-pack-navy text-base">Venmo Payment</div>
-          <div class="text-xs text-pack-dark/70 mt-1">Fast and secure to @CubScoutPack-Unionville.</div>
+          <div class="font-heading font-bold text-pack-navy text-base">Venmo Only</div>
+          <div class="text-xs text-pack-dark/70 mt-1">Secure payment to @CubScoutPack-Unionville.</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- PRODUCT PHOTO CARDS -->
+  <!-- ================= PRODUCT CARDS ================= -->
   <section id="products" class="py-16 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center max-w-2xl mx-auto mb-12 space-y-2">
         <h2 class="font-heading text-3xl font-extrabold text-pack-navy">Choose Your Mum Colors</h2>
-        <p class="text-sm text-pack-dark/70">Each mum is grown locally by Mapletree Nursery in a 9-inch pot for full, vibrant autumn color.</p>
+        <p class="text-sm text-pack-dark/70">Each mum arrives planted in a sturdy 9-inch grower pot, grown locally by Mapletree Nursery.</p>
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
         
         <!-- White -->
-        <div class="bg-pack-cream rounded-2xl overflow-hidden border border-pack-border flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow">
-          <div class="relative aspect-square overflow-hidden bg-slate-200">
-            <img src="https://images.unsplash.com/photo-1572454591674-2739f30d8c40?auto=format&fit=crop&w=600&q=80" alt="White Mum in pot" class="w-full h-full object-cover" />
-            <div class="absolute bottom-0 inset-x-0 bg-black/65 backdrop-blur-xs text-white text-[9px] py-1 text-center font-medium">
-              * Visual Reference Only • Actual Bloom May Vary
+        <div class="bg-pack-cream rounded-2xl overflow-hidden border border-pack-border flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow group">
+          <div class="relative aspect-square overflow-hidden bg-slate-100">
+            <img src="mum-white.jpg" alt="Crisp White Potted Mum" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+            <div class="absolute inset-x-0 bottom-0 bg-pack-dark/85 backdrop-blur-xs py-1.5 px-2 text-center">
+              <span class="text-[9px] uppercase tracking-wider text-pack-gold font-bold block">Visual Preview Only</span>
+              <span class="text-[8px] text-white/90 block leading-tight">Actual 9" nursery plant may vary</span>
             </div>
           </div>
-          <div class="p-4 text-center">
-            <h3 class="font-heading font-bold text-lg text-pack-navy">Pure White</h3>
-            <p class="text-xs text-pack-dark/70 mt-0.5">9" Grower Pot • $15</p>
+          <div class="p-4 text-center flex-1 flex flex-col justify-between">
+            <div>
+              <h3 class="font-heading font-bold text-lg text-pack-navy">Crisp White</h3>
+              <p class="text-xs text-pack-dark/70 mt-0.5">9" Grower Pot • $15</p>
+            </div>
             <button type="button" onclick="bumpColor('white', 1)" class="mt-3 w-full py-2 bg-white hover:bg-pack-gold text-pack-navy font-bold text-xs rounded-lg border border-pack-border transition-colors">
               + Add to Order
             </button>
@@ -140,16 +146,19 @@
         </div>
 
         <!-- Red -->
-        <div class="bg-pack-cream rounded-2xl overflow-hidden border border-pack-border flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow">
-          <div class="relative aspect-square overflow-hidden bg-slate-200">
-            <img src="https://images.unsplash.com/photo-1508615039623-a25605d2b022?auto=format&fit=crop&w=600&q=80" alt="Deep Red Mum in pot" class="w-full h-full object-cover" />
-            <div class="absolute bottom-0 inset-x-0 bg-black/65 backdrop-blur-xs text-white text-[9px] py-1 text-center font-medium">
-              * Visual Reference Only • Actual Bloom May Vary
+        <div class="bg-pack-cream rounded-2xl overflow-hidden border border-pack-border flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow group">
+          <div class="relative aspect-square overflow-hidden bg-slate-100">
+            <img src="mum-red.jpg" alt="Deep Red Potted Mum" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+            <div class="absolute inset-x-0 bottom-0 bg-pack-dark/85 backdrop-blur-xs py-1.5 px-2 text-center">
+              <span class="text-[9px] uppercase tracking-wider text-pack-gold font-bold block">Visual Preview Only</span>
+              <span class="text-[8px] text-white/90 block leading-tight">Actual 9" nursery plant may vary</span>
             </div>
           </div>
-          <div class="p-4 text-center">
-            <h3 class="font-heading font-bold text-lg text-pack-navy">Deep Red / Burgundy</h3>
-            <p class="text-xs text-pack-dark/70 mt-0.5">9" Grower Pot • $15</p>
+          <div class="p-4 text-center flex-1 flex flex-col justify-between">
+            <div>
+              <h3 class="font-heading font-bold text-lg text-pack-navy">Deep Red</h3>
+              <p class="text-xs text-pack-dark/70 mt-0.5">9" Grower Pot • $15</p>
+            </div>
             <button type="button" onclick="bumpColor('red', 1)" class="mt-3 w-full py-2 bg-white hover:bg-pack-gold text-pack-navy font-bold text-xs rounded-lg border border-pack-border transition-colors">
               + Add to Order
             </button>
@@ -157,16 +166,19 @@
         </div>
 
         <!-- Yellow -->
-        <div class="bg-pack-cream rounded-2xl overflow-hidden border border-pack-border flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow">
-          <div class="relative aspect-square overflow-hidden bg-slate-200">
-            <img src="https://images.unsplash.com/photo-1597848212624-a19eb35e2651?auto=format&fit=crop&w=600&q=80" alt="Golden Yellow Mum in pot" class="w-full h-full object-cover" />
-            <div class="absolute bottom-0 inset-x-0 bg-black/65 backdrop-blur-xs text-white text-[9px] py-1 text-center font-medium">
-              * Visual Reference Only • Actual Bloom May Vary
+        <div class="bg-pack-cream rounded-2xl overflow-hidden border border-pack-border flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow group">
+          <div class="relative aspect-square overflow-hidden bg-slate-100">
+            <img src="mum-yellow.jpg" alt="Golden Yellow Potted Mum" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+            <div class="absolute inset-x-0 bottom-0 bg-pack-dark/85 backdrop-blur-xs py-1.5 px-2 text-center">
+              <span class="text-[9px] uppercase tracking-wider text-pack-gold font-bold block">Visual Preview Only</span>
+              <span class="text-[8px] text-white/90 block leading-tight">Actual 9" nursery plant may vary</span>
             </div>
           </div>
-          <div class="p-4 text-center">
-            <h3 class="font-heading font-bold text-lg text-pack-navy">Golden Yellow</h3>
-            <p class="text-xs text-pack-dark/70 mt-0.5">9" Grower Pot • $15</p>
+          <div class="p-4 text-center flex-1 flex flex-col justify-between">
+            <div>
+              <h3 class="font-heading font-bold text-lg text-pack-navy">Golden Yellow</h3>
+              <p class="text-xs text-pack-dark/70 mt-0.5">9" Grower Pot • $15</p>
+            </div>
             <button type="button" onclick="bumpColor('yellow', 1)" class="mt-3 w-full py-2 bg-white hover:bg-pack-gold text-pack-navy font-bold text-xs rounded-lg border border-pack-border transition-colors">
               + Add to Order
             </button>
@@ -174,16 +186,19 @@
         </div>
 
         <!-- Orange -->
-        <div class="bg-pack-cream rounded-2xl overflow-hidden border border-pack-border flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow">
-          <div class="relative aspect-square overflow-hidden bg-slate-200">
-            <img src="https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=600&q=80" alt="Harvest Orange Bronze Mum in pot" class="w-full h-full object-cover" />
-            <div class="absolute bottom-0 inset-x-0 bg-black/65 backdrop-blur-xs text-white text-[9px] py-1 text-center font-medium">
-              * Visual Reference Only • Actual Bloom May Vary
+        <div class="bg-pack-cream rounded-2xl overflow-hidden border border-pack-border flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow group">
+          <div class="relative aspect-square overflow-hidden bg-slate-100">
+            <img src="mum-orange.jpg" alt="Harvest Orange Potted Mum" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+            <div class="absolute inset-x-0 bottom-0 bg-pack-dark/85 backdrop-blur-xs py-1.5 px-2 text-center">
+              <span class="text-[9px] uppercase tracking-wider text-pack-gold font-bold block">Visual Preview Only</span>
+              <span class="text-[8px] text-white/90 block leading-tight">Actual 9" nursery plant may vary</span>
             </div>
           </div>
-          <div class="p-4 text-center">
-            <h3 class="font-heading font-bold text-lg text-pack-navy">Harvest Orange</h3>
-            <p class="text-xs text-pack-dark/70 mt-0.5">9" Grower Pot • $15</p>
+          <div class="p-4 text-center flex-1 flex flex-col justify-between">
+            <div>
+              <h3 class="font-heading font-bold text-lg text-pack-navy">Harvest Orange</h3>
+              <p class="text-xs text-pack-dark/70 mt-0.5">9" Grower Pot • $15</p>
+            </div>
             <button type="button" onclick="bumpColor('orange', 1)" class="mt-3 w-full py-2 bg-white hover:bg-pack-gold text-pack-navy font-bold text-xs rounded-lg border border-pack-border transition-colors">
               + Add to Order
             </button>
@@ -191,16 +206,19 @@
         </div>
 
         <!-- Purple -->
-        <div class="bg-pack-cream rounded-2xl overflow-hidden border border-pack-border flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow">
-          <div class="relative aspect-square overflow-hidden bg-slate-200">
-            <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=600&q=80" alt="Royal Purple Mum in pot" class="w-full h-full object-cover" />
-            <div class="absolute bottom-0 inset-x-0 bg-black/65 backdrop-blur-xs text-white text-[9px] py-1 text-center font-medium">
-              * Visual Reference Only • Actual Bloom May Vary
+        <div class="bg-pack-cream rounded-2xl overflow-hidden border border-pack-border flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow group">
+          <div class="relative aspect-square overflow-hidden bg-slate-100">
+            <img src="mum-purple.jpg" alt="Royal Purple Potted Mum" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+            <div class="absolute inset-x-0 bottom-0 bg-pack-dark/85 backdrop-blur-xs py-1.5 px-2 text-center">
+              <span class="text-[9px] uppercase tracking-wider text-pack-gold font-bold block">Visual Preview Only</span>
+              <span class="text-[8px] text-white/90 block leading-tight">Actual 9" nursery plant may vary</span>
             </div>
           </div>
-          <div class="p-4 text-center">
-            <h3 class="font-heading font-bold text-lg text-pack-navy">Royal Purple / Lavender</h3>
-            <p class="text-xs text-pack-dark/70 mt-0.5">9" Grower Pot • $15</p>
+          <div class="p-4 text-center flex-1 flex flex-col justify-between">
+            <div>
+              <h3 class="font-heading font-bold text-lg text-pack-navy">Royal Purple</h3>
+              <p class="text-xs text-pack-dark/70 mt-0.5">9" Grower Pot • $15</p>
+            </div>
             <button type="button" onclick="bumpColor('purple', 1)" class="mt-3 w-full py-2 bg-white hover:bg-pack-gold text-pack-navy font-bold text-xs rounded-lg border border-pack-border transition-colors">
               + Add to Order
             </button>
@@ -211,7 +229,7 @@
     </div>
   </section>
 
-  <!-- ORDER FORM -->
+  <!-- ================= ORDER FORM ================= -->
   <section id="order-form" class="py-16 bg-pack-navy text-white">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       
@@ -288,7 +306,7 @@
             </div>
           </div>
 
-          <!-- Contact Details -->
+          <!-- Supporter Info -->
           <div>
             <h4 class="text-xs font-bold uppercase tracking-wider text-pack-gold mb-3">2. Supporter Information</h4>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -314,7 +332,7 @@
             </div>
           </div>
 
-          <!-- Delivery Address -->
+          <!-- Delivery Details -->
           <div>
             <h4 class="text-xs font-bold uppercase tracking-wider text-pack-gold mb-3">3. Delivery Address</h4>
             <div class="space-y-4">
@@ -341,7 +359,7 @@
     </div>
   </section>
 
-  <!-- FOOTER -->
+  <!-- ================= FOOTER ================= -->
   <footer class="bg-pack-dark text-pack-cream/70 py-10 border-t border-white/10 text-sm">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
       <div class="flex items-center gap-3">
@@ -357,6 +375,7 @@
     </div>
   </footer>
 
+  <!-- ================= SCRIPT ================= -->
   <script>
     function calcTotal() {
       const white = parseInt(document.getElementById('qty-white').value) || 0;
@@ -436,7 +455,6 @@
           body: JSON.stringify(payload)
         });
 
-        // Show confirmation screen
         document.getElementById('mum-form').classList.add('hidden');
         document.getElementById('success-total').innerText = totalDue;
         document.getElementById('success-memo').innerText = "MUM-" + lastName;
