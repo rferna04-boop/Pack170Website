@@ -278,12 +278,12 @@
           <div class="bg-white/10 border border-white/20 rounded-2xl p-6 max-w-md mx-auto text-left space-y-3">
             <div class="text-xs uppercase text-pack-gold font-bold tracking-wider">Step 2: Submit Venmo Payment</div>
             <div class="text-sm"><strong>Total Due:</strong> $<span id="success-total">0</span>.00</div>
-            <div class="text-sm"><strong>Venmo Account:</strong> <a href="https://venmo.com/CubScoutPack-Unionville" target="_blank" class="text-pack-gold underline font-bold">@CubScoutPack-Unionville</a></div> <!-- -->
+            <div class="text-sm"><strong>Venmo Account:</strong> <a href="https://venmo.com/CubScoutPack-Unionville" target="_blank" rel="noopener noreferrer" class="text-pack-gold underline font-bold">@CubScoutPack-Unionville</a></div> <!-- -->
             <div class="text-sm">
               <strong>Required Venmo Memo:</strong>
               <div class="mt-1 p-2.5 bg-pack-dark border border-pack-gold rounded font-mono text-pack-gold font-bold text-base flex justify-between items-center">
                 <span id="success-memo">MUM-1001 DOE</span>
-                <button type="button" onclick="copyMemo()" class="text-xs uppercase bg-white/20 hover:bg-white/30 text-white px-2 py-1 rounded">Copy</button>
+                <button type="button" id="copy-memo-btn" onclick="copyMemo()" class="text-xs uppercase bg-white/20 hover:bg-white/30 text-white px-2 py-1 rounded transition-colors">Copy</button>
               </div>
             </div>
           </div>
@@ -296,6 +296,11 @@
         <!-- ORDER FORM -->
         <form id="mum-form" onsubmit="submitMumOrder(event)" class="space-y-8">
           
+          <!-- Bot Field Honeypot for Spam Protection -->
+          <div class="hidden" aria-hidden="true">
+            <label>Leave this empty: <input type="text" name="bot_honey" id="cust-hp" tabindex="-1" autocomplete="off" /></label>
+          </div>
+
           <!-- Order Summary Breakdown -->
           <div class="bg-white/5 border border-white/10 p-4 sm:p-6 rounded-2xl">
             <div class="flex justify-between items-center mb-3">
@@ -321,15 +326,15 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label class="block text-xs font-semibold text-pack-cream/90 mb-1">Full Name *</label>
-                <input type="text" id="cust-name" required placeholder="Jane Doe" class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-2.5 text-white placeholder-white/40 focus:outline-none focus:border-pack-gold text-sm" />
+                <input type="text" id="cust-name" required maxlength="100" placeholder="Jane Doe" class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-2.5 text-white placeholder-white/40 focus:outline-none focus:border-pack-gold text-sm" />
               </div>
               <div>
                 <label class="block text-xs font-semibold text-pack-cream/90 mb-1">Email (for receipt & updates) *</label>
-                <input type="email" id="cust-email" required placeholder="you@example.com" class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-2.5 text-white placeholder-white/40 focus:outline-none focus:border-pack-gold text-sm" />
+                <input type="email" id="cust-email" required maxlength="100" placeholder="you@example.com" class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-2.5 text-white placeholder-white/40 focus:outline-none focus:border-pack-gold text-sm" />
               </div>
               <div>
                 <label class="block text-xs font-semibold text-pack-cream/90 mb-1">Phone Number *</label>
-                <input type="tel" id="cust-phone" required placeholder="(860) 555-0199" class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-2.5 text-white placeholder-white/40 focus:outline-none focus:border-pack-gold text-sm" />
+                <input type="tel" id="cust-phone" required maxlength="25" placeholder="(860) 555-0199" class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-2.5 text-white placeholder-white/40 focus:outline-none focus:border-pack-gold text-sm" />
               </div>
               <div>
                 <label class="block text-xs font-semibold text-pack-cream/90 mb-1">Town / Zip Code *</label>
@@ -347,11 +352,11 @@
             <div class="space-y-4">
               <div>
                 <label class="block text-xs font-semibold text-pack-cream/90 mb-1">Street Address *</label>
-                <input type="text" id="cust-address" required placeholder="123 Main St" class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-2.5 text-white placeholder-white/40 focus:outline-none focus:border-pack-gold text-sm" />
+                <input type="text" id="cust-address" required maxlength="150" placeholder="123 Main St" class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-2.5 text-white placeholder-white/40 focus:outline-none focus:border-pack-gold text-sm" />
               </div>
               <div>
                 <label class="block text-xs font-semibold text-pack-cream/90 mb-1">Drop-off Notes (Optional)</label>
-                <input type="text" id="cust-notes" placeholder="e.g. Leave by front porch steps or garage" class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-2.5 text-white placeholder-white/40 focus:outline-none focus:border-pack-gold text-sm" />
+                <input type="text" id="cust-notes" maxlength="250" placeholder="e.g. Leave by front porch steps or garage" class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-2.5 text-white placeholder-white/40 focus:outline-none focus:border-pack-gold text-sm" />
               </div>
             </div>
           </div>
@@ -394,23 +399,38 @@
       calcTotal();
     }
 
+    function createSummaryRow(label, qty, price) {
+      const row = document.createElement('div');
+      row.className = 'flex justify-between';
+      
+      const labelSpan = document.createElement('span');
+      labelSpan.textContent = `${label} (×${qty})`;
+      
+      const priceSpan = document.createElement('span');
+      priceSpan.textContent = `$${price}.00`;
+      
+      row.appendChild(labelSpan);
+      row.appendChild(priceSpan);
+      return row;
+    }
+
     function calcTotal() {
-      const white = parseInt(document.getElementById('qty-white').value) || 0;
-      const red = parseInt(document.getElementById('qty-red').value) || 0;
-      const yellow = parseInt(document.getElementById('qty-yellow').value) || 0;
-      const orange = parseInt(document.getElementById('qty-orange').value) || 0;
-      const purple = parseInt(document.getElementById('qty-purple').value) || 0;
+      const white = Math.max(0, parseInt(document.getElementById('qty-white').value) || 0);
+      const red = Math.max(0, parseInt(document.getElementById('qty-red').value) || 0);
+      const yellow = Math.max(0, parseInt(document.getElementById('qty-yellow').value) || 0);
+      const orange = Math.max(0, parseInt(document.getElementById('qty-orange').value) || 0);
+      const purple = Math.max(0, parseInt(document.getElementById('qty-purple').value) || 0);
 
       const totalPlants = white + red + yellow + orange + purple;
       const totalDue = totalPlants * 15;
 
       // Update card banner & header badge
-      document.getElementById('card-total-plants').innerText = totalPlants;
-      document.getElementById('card-total-cost').innerText = '$' + totalDue.toFixed(2);
+      document.getElementById('card-total-plants').textContent = totalPlants;
+      document.getElementById('card-total-cost').textContent = '$' + totalDue.toFixed(2);
       
       const navBadge = document.getElementById('nav-badge');
       if (totalPlants > 0) {
-        navBadge.innerText = totalPlants;
+        navBadge.textContent = totalPlants;
         navBadge.classList.remove('hidden');
       } else {
         navBadge.classList.add('hidden');
@@ -421,27 +441,57 @@
       const itemsList = document.getElementById('summary-items-list');
       const costDisplay = document.getElementById('summary-cost-display');
 
-      costDisplay.innerText = '$' + totalDue.toFixed(2);
+      costDisplay.textContent = '$' + totalDue.toFixed(2);
 
       if (totalPlants === 0) {
         emptyMsg.classList.remove('hidden');
         itemsList.classList.add('hidden');
-        itemsList.innerHTML = '';
+        itemsList.replaceChildren();
       } else {
         emptyMsg.classList.add('hidden');
         itemsList.classList.remove('hidden');
-        
-        let html = '';
-        if (white > 0) html += `<div class="flex justify-between"><span>Crisp White (×${white})</span><span>$${white * 15}.00</span></div>`;
-        if (red > 0) html += `<div class="flex justify-between"><span>Deep Red (×${red})</span><span>$${red * 15}.00</span></div>`;
-        if (yellow > 0) html += `<div class="flex justify-between"><span>Golden Yellow (×${yellow})</span><span>$${yellow * 15}.00</span></div>`;
-        if (orange > 0) html += `<div class="flex justify-between"><span>Harvest Orange (×${orange})</span><span>$${orange * 15}.00</span></div>`;
-        if (purple > 0) html += `<div class="flex justify-between"><span>Royal Purple (×${purple})</span><span>$${purple * 15}.00</span></div>`;
-        
-        itemsList.innerHTML = html;
+        itemsList.replaceChildren();
+
+        const items = [
+          { name: 'Crisp White', qty: white },
+          { name: 'Deep Red', qty: red },
+          { name: 'Golden Yellow', qty: yellow },
+          { name: 'Harvest Orange', qty: orange },
+          { name: 'Royal Purple', qty: purple }
+        ];
+
+        items.forEach(item => {
+          if (item.qty > 0) {
+            itemsList.appendChild(createSummaryRow(item.name, item.qty, item.qty * 15));
+          }
+        });
       }
 
       return { white, red, yellow, orange, purple, totalPlants, totalDue };
+    }
+
+    // Sanitize string against spreadsheet formula injection (=, +, -, @)
+    function sanitizeForSheet(input) {
+      if (typeof input !== 'string') return '';
+      let cleaned = input.trim();
+      // Neutralize leading spreadsheet formula execution characters
+      if (/^[=\+\-@\t\r]/.test(cleaned)) {
+        cleaned = "'" + cleaned;
+      }
+      return cleaned;
+    }
+
+    // Generate collision-resistant unique Order ID (Date-based + random token)
+    function generateOrderId() {
+      const now = new Date();
+      const mm = String(now.getMonth() + 1).padStart(2, '0');
+      const dd = String(now.getDate()).padStart(2, '0');
+      const chars = '23456789ABCDEFGHJKLMNPQRSTUVWXYZ';
+      let rand = '';
+      for (let i = 0; i < 4; i++) {
+        rand += chars.charAt(Math.floor(Math.random() * chars.length));
+      }
+      return `MUM-${mm}${dd}-${rand}`;
     }
 
     async function submitMumOrder(event) {
@@ -449,37 +499,46 @@
       const errBox = document.getElementById('form-error');
       errBox.classList.add('hidden');
 
+      // Bot honeypot check
+      const honeypot = document.getElementById('cust-hp').value;
+      if (honeypot) {
+        return;
+      }
+
       const { white, red, yellow, orange, purple, totalPlants, totalDue } = calcTotal();
 
       if (totalPlants <= 0) {
-        errBox.innerText = "Please select at least 1 mum to order using the [+] buttons on the color cards above.";
+        errBox.textContent = "Please select at least 1 mum to order using the [+] buttons on the color cards above.";
         errBox.classList.remove('hidden');
         document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
         return;
       }
 
-      const fullName = document.getElementById('cust-name').value.trim();
+      const rawFullName = document.getElementById('cust-name').value.trim();
       const email = document.getElementById('cust-email').value.trim();
       const phone = document.getElementById('cust-phone').value.trim();
       const zip = document.getElementById('cust-zip').value;
-      const address = document.getElementById('cust-address').value.trim();
-      const deliveryNotes = document.getElementById('cust-notes').value.trim();
+      const rawAddress = document.getElementById('cust-address').value.trim();
+      const rawNotes = document.getElementById('cust-notes').value.trim();
 
-      const nameParts = fullName.split(' ');
-      const lastName = (nameParts.length > 1 ? nameParts[nameParts.length - 1] : fullName).toUpperCase();
+      // Sanitization
+      const fullName = sanitizeForSheet(rawFullName);
+      const address = sanitizeForSheet(rawAddress);
+      const deliveryNotes = sanitizeForSheet(rawNotes);
 
-      // Sequential unique order ID generation
-      let currentOrderCount = parseInt(localStorage.getItem('pack170_mum_seq') || '1000');
-      currentOrderCount += 1;
-      localStorage.setItem('pack170_mum_seq', currentOrderCount);
+      // Clean last name for Venmo memo (letters and hyphens only)
+      const nameParts = rawFullName.split(/\s+/);
+      const rawLastName = nameParts.length > 1 ? nameParts[nameParts.length - 1] : rawFullName;
+      const cleanLastName = rawLastName.replace(/[^a-zA-Z\-]/g, '').toUpperCase() || 'ORDER';
 
-      const orderId = "MUM-" + currentOrderCount;
-      const fullMemo = orderId + " " + lastName;
+      // Collision-resistant order ID
+      const orderId = generateOrderId();
+      const fullMemo = `${orderId} ${cleanLastName}`;
 
       const payload = {
         orderId,
         fullName,
-        lastName,
+        lastName: cleanLastName,
         email,
         phone,
         zip,
@@ -491,12 +550,13 @@
         orange,
         purple,
         totalPlants,
-        totalDue
+        totalDue,
+        timestamp: new Date().toISOString()
       };
 
       const btn = document.getElementById('submit-btn');
       btn.disabled = true;
-      btn.innerText = "Processing Order...";
+      btn.textContent = "Processing Order...";
 
       const scriptURL = "https://script.google.com/macros/s/AKfycbyWiekUMzj2ooSg2_BPkvTkviFY5rFYOBGnDIg1aHWA15jjx57__cJG8S6mtmw62-8Z/exec";
 
@@ -510,22 +570,43 @@
 
         // Instant screen update with matching orderId and full memo
         document.getElementById('mum-form').classList.add('hidden');
-        document.getElementById('success-total').innerText = totalDue;
-        document.getElementById('success-memo').innerText = fullMemo;
+        document.getElementById('success-total').textContent = totalDue;
+        document.getElementById('success-memo').textContent = fullMemo;
         document.getElementById('order-success-screen').classList.remove('hidden');
 
+        // Scroll to confirmation
+        document.getElementById('order-form').scrollIntoView({ behavior: 'smooth' });
+
       } catch (err) {
-        errBox.innerText = "There was an error submitting your order. Please contact Pack170Fundraiser@gmail.com directly.";
+        errBox.textContent = "There was an error submitting your order. Please contact Pack170Fundraiser@gmail.com directly.";
         errBox.classList.remove('hidden');
         btn.disabled = false;
-        btn.innerText = "Submit Order & Generate Venmo Receipt →";
+        btn.textContent = "Submit Order & Generate Venmo Receipt →";
       }
     }
 
-    function copyMemo() {
-      const text = document.getElementById('success-memo').innerText;
-      navigator.clipboard.writeText(text);
-      alert("Venmo memo copied: " + text);
+    async function copyMemo() {
+      const text = document.getElementById('success-memo').textContent;
+      const btn = document.getElementById('copy-memo-btn');
+      try {
+        await navigator.clipboard.writeText(text);
+        const originalText = btn.textContent;
+        btn.textContent = "Copied! ✓";
+        btn.classList.add('bg-pack-green/60');
+        setTimeout(() => {
+          btn.textContent = originalText;
+          btn.classList.remove('bg-pack-green/60');
+        }, 2000);
+      } catch (e) {
+        const input = document.createElement('input');
+        input.value = text;
+        document.body.appendChild(input);
+        input.select();
+        document.execCommand('copy');
+        document.body.removeChild(input);
+        btn.textContent = "Copied! ✓";
+        setTimeout(() => { btn.textContent = "Copy"; }, 2000);
+      }
     }
   </script>
 

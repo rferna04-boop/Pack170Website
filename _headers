@@ -1,0 +1,18 @@
+/*
+  # Clickjacking Protection
+  X-Frame-Options: DENY
+
+  # Prevent MIME-type sniffing
+  X-Content-Type-Options: nosniff
+
+  # Referrer Privacy
+  Referrer-Policy: strict-origin-when-cross-origin
+
+  # Restrict browser APIs / hardware capabilities
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
+
+  # Enforce HTTPS HSTS (1 year)
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+
+  # Content Security Policy (allows Tailwind CDN, Google Fonts, and Google Apps Script)
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://*.netlify.com https://*.netlify.app;
