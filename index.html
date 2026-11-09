@@ -59,6 +59,11 @@
         </a>
         <span>•</span>
         <a href="mailto:cspack170ct@gmail.com" class="hover:text-pack-gold transition-colors">cspack170ct@gmail.com</a>
+        <span>•</span>
+        <a href="#portal" class="hover:text-pack-gold text-pack-gold font-semibold flex items-center gap-1 transition-colors">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+          Member Portal
+        </a>
       </div>
     </div>
   </div>
@@ -77,12 +82,16 @@
       </a>
 
       <!-- Desktop Navigation Links -->
-      <nav class="hidden md:flex items-center gap-8 font-medium text-sm">
+      <nav class="hidden lg:flex items-center gap-6 xl:gap-8 font-medium text-sm">
         <a href="#about" class="text-white/90 hover:text-pack-gold transition-colors">Why Pack 170</a>
         <a href="#one-pack" class="text-white/90 hover:text-pack-gold transition-colors">How It Works</a>
         <a href="#activities" class="text-white/90 hover:text-pack-gold transition-colors">Activities</a>
         <a href="#news" class="text-white/90 hover:text-pack-gold transition-colors">News & Events</a>
         <a href="#faq" class="text-white/90 hover:text-pack-gold transition-colors">Parent FAQ</a>
+        <a href="#portal" class="text-pack-gold hover:text-white flex items-center gap-1.5 transition-colors font-semibold">
+          <svg class="w-4 h-4 text-pack-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+          Member Portal
+        </a>
       </nav>
 
       <!-- Primary CTAs -->
@@ -480,6 +489,243 @@
     </div>
   </section>
 
+  <!-- ================= MEMBER PORTAL (PARENT & LEADER RESOURCES) ================= -->
+  <section id="portal" class="py-20 bg-pack-cream border-t border-pack-border scroll-mt-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <!-- Section Header -->
+      <div class="text-center max-w-2xl mx-auto mb-12 space-y-3">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-pack-navy text-pack-gold text-xs font-bold uppercase tracking-wider shadow-sm">
+          <svg class="w-3.5 h-3.5 text-pack-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+          Pack 170 Member Portal
+        </div>
+        <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-pack-navy">
+          Parent &amp; Leader Resource Section
+        </h2>
+        <p class="text-pack-dark/80 text-base leading-relaxed">
+          Access essential BSA forms, our family orientation handbook, volunteer leadership registration, and online training modules.
+        </p>
+      </div>
+
+      <!-- Password Protected Gate (Locked State) -->
+      <div id="index-portal-gate" class="max-w-md mx-auto bg-white rounded-3xl p-8 sm:p-10 shadow-lg border border-pack-border text-center">
+        <div class="w-16 h-16 mx-auto mb-5 rounded-2xl bg-pack-navy/10 text-pack-navy flex items-center justify-center border border-pack-navy/20">
+          <svg class="w-8 h-8 text-pack-navy" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+          </svg>
+        </div>
+
+        <h3 class="font-heading text-xl sm:text-2xl font-bold text-pack-navy mb-2">Password Protected Section</h3>
+        <p class="text-sm text-pack-dark/70 mb-6 leading-relaxed">
+          Enter the Pack password to unlock parent handbooks, required health forms, and leader resources.
+        </p>
+
+        <form id="index-portal-form" onsubmit="handleIndexPortalLogin(event)" class="space-y-4">
+          <div class="text-left">
+            <label for="index-portal-password" class="block text-xs font-bold uppercase tracking-wider text-pack-dark/80 mb-2">Pack Password</label>
+            <div class="relative">
+              <input 
+                type="password" 
+                id="index-portal-password" 
+                autocomplete="current-password"
+                required 
+                placeholder="Enter password" 
+                class="w-full bg-pack-cream border border-pack-border rounded-xl px-4 py-3 text-pack-dark placeholder-pack-dark/40 focus:outline-none focus:border-pack-navy focus:ring-2 focus:ring-pack-navy/20 transition-all"
+              />
+              <button 
+                type="button" 
+                onclick="toggleIndexPasswordVisibility(this)" 
+                class="absolute right-3 top-1/2 -translate-y-1/2 text-pack-dark/50 hover:text-pack-dark text-xs font-semibold px-2 py-1 rounded"
+                aria-label="Toggle password view"
+              >
+                Show
+              </button>
+            </div>
+            <p id="index-portal-error" class="hidden mt-2 text-xs text-red-600 font-semibold flex items-center gap-1">
+              <svg class="w-3.5 h-3.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
+              <span>Incorrect password. Please try again.</span>
+            </p>
+          </div>
+
+          <button 
+            type="submit" 
+            class="w-full py-3.5 bg-pack-navy hover:bg-pack-dark text-white font-heading font-bold text-sm rounded-xl shadow-md hover:shadow-lg transition-all transform hover:-translate-y-0.5"
+          >
+            Unlock Member Section
+          </button>
+        </form>
+
+        <div class="mt-6 pt-6 border-t border-pack-border text-xs text-pack-dark/60">
+          Need the password? Contact your Den Leader or email <a href="mailto:cspack170ct@gmail.com" class="text-pack-navy font-bold hover:underline">cspack170ct@gmail.com</a>.
+        </div>
+      </div>
+
+      <!-- Unlocked Content View -->
+      <div id="index-portal-content" class="hidden">
+        
+        <!-- Status Bar -->
+        <div class="mb-8 bg-white rounded-2xl p-4 sm:p-5 border border-pack-border shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div class="flex items-center gap-3">
+            <span class="flex h-3 w-3 relative">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-pack-green opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-3 w-3 bg-pack-green"></span>
+            </span>
+            <div>
+              <div class="text-xs font-bold uppercase tracking-wider text-pack-green">Unlocked &amp; Active</div>
+              <div class="text-sm font-semibold text-pack-navy">Cub Scout Pack 170 Member Resources</div>
+            </div>
+          </div>
+          <div class="flex items-center gap-3">
+            <a href="portal.html" class="text-xs font-bold text-pack-navy hover:text-pack-orange underline">
+              Open Full Dedicated Portal →
+            </a>
+            <button 
+              onclick="handleIndexPortalLogout()" 
+              class="text-xs font-bold text-pack-dark/70 hover:text-red-600 border border-pack-border hover:border-red-300 rounded-lg px-3 py-1.5 transition-colors"
+            >
+              Lock Section
+            </button>
+          </div>
+        </div>
+
+        <!-- 4 Resource Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          
+          <!-- Card 1: Family Handbook -->
+          <div class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-pack-border flex flex-col justify-between group">
+            <div class="p-8">
+              <div class="flex items-center justify-between mb-4">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-pack-navy/10 text-pack-navy text-xs font-bold uppercase tracking-wider">
+                  Orientation Guide
+                </span>
+                <span class="text-xs font-semibold text-pack-dark/50">Official BSA PDF</span>
+              </div>
+              <div class="w-12 h-12 rounded-2xl bg-amber-50 text-pack-gold flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+              </div>
+              <h3 class="font-heading text-2xl font-extrabold text-pack-navy mb-3 leading-snug">
+                Welcome to Scouting Family Handbook
+              </h3>
+              <p class="text-sm text-pack-dark/80 leading-relaxed mb-4">
+                The official Cub Scout family orientation guide. Covers rank progression, pack meetings, uniforming, parent involvement, and what to expect during your family's scouting journey.
+              </p>
+            </div>
+            <div class="p-8 pt-0">
+              <a 
+                href="https://www.scouting.org/wp-content/uploads/2023/07/512-73523WelcomeNewCSFamily_WEB.pdf" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                class="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-pack-navy hover:bg-pack-gold hover:text-pack-dark text-white font-heading font-bold text-sm rounded-xl shadow transition-all"
+              >
+                <span>Download Family Handbook (PDF)</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Card 2: Medical Forms -->
+          <div class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-pack-border flex flex-col justify-between group">
+            <div class="p-8">
+              <div class="flex items-center justify-between mb-4">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-100 text-red-800 text-xs font-bold uppercase tracking-wider">
+                  Health &amp; Safety
+                </span>
+                <span class="text-xs font-semibold text-pack-dark/50">Required Annually</span>
+              </div>
+              <div class="w-12 h-12 rounded-2xl bg-red-50 text-red-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+              </div>
+              <h3 class="font-heading text-2xl font-extrabold text-pack-navy mb-3 leading-snug">
+                Annual Health &amp; Medical Record (Med Forms)
+              </h3>
+              <p class="text-sm text-pack-dark/80 leading-relaxed mb-4">
+                Required for all youth and attending adults. Parts A &amp; B are required for regular pack meetings, day hikes, and overnight camping trips under 72 hours.
+              </p>
+            </div>
+            <div class="p-8 pt-0">
+              <a 
+                href="https://www.scouting.org/health-and-safety/ahmr/" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                class="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-pack-navy hover:bg-red-700 text-white font-heading font-bold text-sm rounded-xl shadow transition-all"
+              >
+                <span>Access Medical Forms (AHMR)</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Card 3: Adult Registration -->
+          <div class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-pack-border flex flex-col justify-between group">
+            <div class="p-8">
+              <div class="flex items-center justify-between mb-4">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-pack-teal/15 text-pack-teal text-xs font-bold uppercase tracking-wider">
+                  Volunteer Team
+                </span>
+                <span class="text-xs font-semibold text-pack-dark/50">Be A Scout Portal</span>
+              </div>
+              <div class="w-12 h-12 rounded-2xl bg-teal-50 text-pack-teal flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/></svg>
+              </div>
+              <h3 class="font-heading text-2xl font-extrabold text-pack-navy mb-3 leading-snug">
+                Adult Leader &amp; Volunteer Registration
+              </h3>
+              <p class="text-sm text-pack-dark/80 leading-relaxed mb-4">
+                Join our volunteer leadership team! Register directly with Pack 170 as a Den Leader, Assistant Cubmaster, or Committee Member via the official Be A Scout portal.
+              </p>
+            </div>
+            <div class="p-8 pt-0">
+              <a 
+                href="https://beascout.scouting.org/units/b245a983-8526-40a3-ae25-b263af4e329d" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                class="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-pack-teal hover:bg-pack-navy text-white font-heading font-bold text-sm rounded-xl shadow transition-all"
+              >
+                <span>Register as an Adult Leader</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Card 4: Leader Training -->
+          <div class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-pack-border flex flex-col justify-between group">
+            <div class="p-8">
+              <div class="flex items-center justify-between mb-4">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-pack-orange/15 text-pack-orange text-xs font-bold uppercase tracking-wider">
+                  Certification
+                </span>
+                <span class="text-xs font-semibold text-pack-dark/50">Online BSA Training</span>
+              </div>
+              <div class="w-12 h-12 rounded-2xl bg-orange-50 text-pack-orange flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
+              </div>
+              <h3 class="font-heading text-2xl font-extrabold text-pack-navy mb-3 leading-snug">
+                Adult Leader Training &amp; YPT
+              </h3>
+              <p class="text-sm text-pack-dark/80 leading-relaxed mb-4">
+                Access mandatory Youth Protection Training (YPT), position courses, and BALOO certifications via the online BSA Learn Center on my.Scouting.org.
+              </p>
+            </div>
+            <div class="p-8 pt-0">
+              <a 
+                href="https://www.scouting.org/programs/cub-scouts/leader-resources/adult-leader-training/" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                class="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-pack-orange hover:bg-pack-navy text-white font-heading font-bold text-sm rounded-xl shadow transition-all"
+              >
+                <span>Launch Leader Training</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
   <!-- ================= INQUIRY & CONTACT FORM (NETLIFY POWERED) ================= -->
   <section id="contact" class="py-20 bg-pack-navy text-white relative overflow-hidden">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -575,6 +821,10 @@
       </div>
 
       <div class="flex items-center gap-6 text-xs">
+        <a href="#portal" class="text-pack-gold hover:underline flex items-center gap-1 font-semibold transition-colors">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+          Member Portal
+        </a>
         <a href="https://www.facebook.com/profile.php?id=61555280236028" target="_blank" rel="noopener noreferrer" class="text-white hover:text-pack-gold transition-colors">Facebook</a>
         <a href="https://beascout.scouting.org/units/b245a983-8526-40a3-ae25-b263af4e329d" target="_blank" rel="noopener noreferrer" class="text-white hover:text-pack-gold transition-colors">Be A Scout Portal</a>
         <a href="mailto:cspack170ct@gmail.com" class="text-white hover:text-pack-gold transition-colors">cspack170ct@gmail.com</a>
@@ -586,7 +836,7 @@
     </div>
   </footer>
 
-  <!-- Script to show success banner on form return -->
+  <!-- Script for success banner & Member Portal section authentication -->
   <script>
     if (window.location.search.includes('success=true')) {
       const banner = document.getElementById('success-banner');
@@ -594,6 +844,73 @@
         banner.classList.remove('hidden');
       }
     }
+
+    const PORTAL_AUTH_KEY = 'pack170_portal_auth_v1';
+    const CORRECT_PASSWORD = 'Pack170';
+
+    function checkIndexPortalAuth() {
+      const isAuth = sessionStorage.getItem(PORTAL_AUTH_KEY) === 'granted';
+      const gate = document.getElementById('index-portal-gate');
+      const content = document.getElementById('index-portal-content');
+
+      if (isAuth) {
+        if (gate) gate.classList.add('hidden');
+        if (content) content.classList.remove('hidden');
+      } else {
+        if (gate) gate.classList.remove('hidden');
+        if (content) content.classList.add('hidden');
+      }
+    }
+
+    function handleIndexPortalLogin(event) {
+      if (event) event.preventDefault();
+      const input = document.getElementById('index-portal-password');
+      const errorMsg = document.getElementById('index-portal-error');
+      const val = (input ? input.value : '').trim();
+
+      if (val.toLowerCase() === CORRECT_PASSWORD.toLowerCase()) {
+        sessionStorage.setItem(PORTAL_AUTH_KEY, 'granted');
+        if (errorMsg) errorMsg.classList.add('hidden');
+        if (input) input.value = '';
+        checkIndexPortalAuth();
+        const content = document.getElementById('index-portal-content');
+        if (content) {
+          content.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      } else {
+        if (errorMsg) errorMsg.classList.remove('hidden');
+        if (input) {
+          input.focus();
+          input.classList.add('border-red-500', 'ring-2', 'ring-red-200');
+          setTimeout(() => {
+            input.classList.remove('border-red-500', 'ring-2', 'ring-red-200');
+          }, 1500);
+        }
+      }
+    }
+
+    function handleIndexPortalLogout() {
+      sessionStorage.removeItem(PORTAL_AUTH_KEY);
+      checkIndexPortalAuth();
+      const portalSec = document.getElementById('portal');
+      if (portalSec) {
+        portalSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    function toggleIndexPasswordVisibility(btn) {
+      const field = document.getElementById('index-portal-password');
+      if (!field) return;
+      if (field.type === 'password') {
+        field.type = 'text';
+        btn.textContent = 'Hide';
+      } else {
+        field.type = 'password';
+        btn.textContent = 'Show';
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', checkIndexPortalAuth);
   </script>
 
 </body>
