@@ -74,13 +74,16 @@
       </a>
 
       <!-- Desktop Navigation Links -->
-      <nav class="hidden md:flex items-center gap-8 font-medium text-sm">
+      <nav class="hidden md:flex items-center gap-7 font-medium text-sm">
         <a href="index.html" class="text-white/90 hover:text-pack-gold transition-colors flex items-center gap-1.5">
           <span>←</span> Back to Pack Home
         </a>
         <a href="budget.html" class="text-white/90 hover:text-pack-gold transition-colors flex items-center gap-1.5 font-semibold">
           <svg class="w-4 h-4 text-pack-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
           <span>Pack Budget</span>
+        </a>
+        <a href="#payments" class="text-pack-gold hover:text-white transition-colors flex items-center gap-1.5 font-semibold">
+          <span>💳</span> Pay Dues &amp; Fees
         </a>
         <a href="index.html#activities" class="text-white/90 hover:text-pack-gold transition-colors">Activities</a>
         <a href="index.html#faq" class="text-white/90 hover:text-pack-gold transition-colors">FAQ</a>
@@ -225,6 +228,186 @@
               <span>→</span>
             </a>
           </div>
+        </div>
+
+        <!-- ================= CARD: PACK DUES & ACTIVITY FEES PAYMENT PORTAL ================= -->
+        <div id="payments" class="md:col-span-2 bg-white rounded-3xl p-8 sm:p-10 shadow-lg border border-pack-border flex flex-col justify-between scroll-mt-24">
+          
+          <div class="space-y-3 mb-6">
+            <div class="flex flex-wrap items-center justify-between gap-3">
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#008CFF]/10 text-[#008CFF] text-xs font-bold uppercase tracking-wider">
+                <span>💳</span>
+                <span>Venmo Payments &amp; Dues Portal</span>
+              </span>
+              <span class="text-xs font-semibold text-pack-dark/50">
+                Official Unit: <strong class="text-pack-navy">@CubScoutPack-Unionville</strong>
+              </span>
+            </div>
+
+            <h2 class="font-heading text-2xl sm:text-3xl font-extrabold text-pack-navy leading-tight">
+              Pay Pack Dues &amp; Activity Costs
+            </h2>
+            <p class="text-sm text-pack-dark/80 leading-relaxed max-w-3xl">
+              Log your Scout payment details below. Submitting this form records your transaction in the Pack Treasury database and generates your unique Venmo memo reference code, ensuring your Scout's account is credited accurately.
+            </p>
+          </div>
+
+          <!-- SUCCESS SCREEN (Hidden until submitted) -->
+          <div id="payment-success-screen" class="hidden text-center py-8 space-y-6 bg-pack-cream/50 rounded-2xl p-6 border border-pack-border">
+            <div class="w-16 h-16 bg-pack-green/20 text-pack-green rounded-full flex items-center justify-center mx-auto text-3xl font-bold">
+              ✓
+            </div>
+            <div class="space-y-1">
+              <h3 class="font-heading text-2xl sm:text-3xl font-extrabold text-pack-navy">Payment Details Logged!</h3>
+              <p class="text-xs sm:text-sm text-pack-dark/70">
+                Your payment record has been registered in the Pack 170 Treasury database.
+              </p>
+            </div>
+
+            <div class="bg-white border border-pack-border rounded-2xl p-6 max-w-md mx-auto text-left space-y-3.5 shadow-sm">
+              <div class="text-xs uppercase text-pack-gold font-bold tracking-wider">Step 2: Complete Payment in Venmo</div>
+              
+              <div class="text-xs flex justify-between border-b border-pack-border/60 pb-2">
+                <span class="text-pack-dark/70">Scout / Family:</span>
+                <strong id="receipt-scout-name" class="text-pack-navy text-right">Scout Name</strong>
+              </div>
+              <div class="text-xs flex justify-between border-b border-pack-border/60 pb-2">
+                <span class="text-pack-dark/70">Purpose:</span>
+                <strong id="receipt-purpose" class="text-pack-navy text-right">Pack Dues</strong>
+              </div>
+              <div class="text-xs flex justify-between border-b border-pack-border/60 pb-2">
+                <span class="text-pack-dark/70">Total Due:</span>
+                <strong id="receipt-total" class="text-pack-green text-base font-heading">$80.00</strong>
+              </div>
+              <div class="text-xs flex justify-between border-b border-pack-border/60 pb-2">
+                <span class="text-pack-dark/70">Venmo Account:</span>
+                <a href="https://venmo.com/CubScoutPack-Unionville" target="_blank" rel="noopener noreferrer" class="text-[#008CFF] underline font-bold">@CubScoutPack-Unionville</a>
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold text-pack-dark/80 mb-1">Required Venmo Memo (Crucial for Account Credit):</label>
+                <div class="p-2.5 bg-pack-dark border border-pack-gold/60 rounded-xl font-mono text-pack-gold font-bold text-sm flex justify-between items-center gap-2">
+                  <span id="receipt-memo" class="truncate select-all">DUES-1115-XXXX SMITH</span>
+                  <button type="button" id="copy-memo-btn" onclick="copyReceiptMemo()" class="text-xs uppercase bg-white/20 hover:bg-white/30 text-white px-3 py-1.5 rounded-lg transition-colors flex-shrink-0">
+                    Copy
+                  </button>
+                </div>
+              </div>
+
+              <div class="pt-2">
+                <a 
+                  id="receipt-venmo-link"
+                  href="https://venmo.com/CubScoutPack-Unionville" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  class="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-[#008CFF] hover:bg-[#0070CC] text-white font-heading font-extrabold text-sm rounded-xl shadow transition-all transform hover:-translate-y-0.5"
+                >
+                  <span>Open Venmo &amp; Pay Now</span>
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                </a>
+              </div>
+            </div>
+
+            <p class="text-[11px] text-pack-dark/60 max-w-md mx-auto italic">
+              Our Pack Treasurer matches your Venmo payment against this database record. You will receive an email confirmation once verified.
+            </p>
+
+            <button type="button" onclick="resetPaymentForm()" class="text-xs font-bold text-pack-navy hover:text-pack-orange underline">
+              ← Log Another Scout Payment
+            </button>
+          </div>
+
+          <!-- PAYMENT FORM -->
+          <form id="portal-payment-form" onsubmit="submitPortalPayment(event)" class="space-y-6">
+            
+            <!-- Bot Field Honeypot for Spam Protection -->
+            <p class="hidden">
+              <label>Leave this empty: <input name="bot_field" id="pay-hp" tabindex="-1" autocomplete="off" /></label>
+            </p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-pack-navy mb-1.5">Parent / Guardian Full Name *</label>
+                <input type="text" id="pay-parent-name" required maxlength="100" placeholder="Jane Doe" class="w-full bg-pack-cream/60 border border-pack-border rounded-xl px-4 py-2.5 text-sm text-pack-dark placeholder-pack-dark/40 focus:outline-none focus:border-pack-navy focus:bg-white transition-all" />
+              </div>
+              <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-pack-navy mb-1.5">Email (for Receipt &amp; Updates) *</label>
+                <input type="email" id="pay-parent-email" required maxlength="100" placeholder="you@example.com" class="w-full bg-pack-cream/60 border border-pack-border rounded-xl px-4 py-2.5 text-sm text-pack-dark placeholder-pack-dark/40 focus:outline-none focus:border-pack-navy focus:bg-white transition-all" />
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-pack-navy mb-1.5">
+                  Scout's Full Name * 
+                  <span class="text-[10px] text-pack-dark/60 font-normal lowercase">(who payment applies to)</span>
+                </label>
+                <input type="text" id="pay-scout-name" required maxlength="100" placeholder="e.g. Leo Doe" class="w-full bg-pack-cream/60 border border-pack-border rounded-xl px-4 py-2.5 text-sm text-pack-dark placeholder-pack-dark/40 focus:outline-none focus:border-pack-navy focus:bg-white transition-all" />
+              </div>
+              <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-pack-navy mb-1.5">Scout Rank / Den *</label>
+                <select id="pay-scout-rank" required class="w-full bg-pack-cream/60 border border-pack-border rounded-xl px-4 py-2.5 text-sm text-pack-dark focus:outline-none focus:border-pack-navy focus:bg-white transition-all">
+                  <option value="Lions">Kindergarten (Lions)</option>
+                  <option value="Tigers">1st Grade (Tigers)</option>
+                  <option value="Wolves">2nd Grade (Wolves)</option>
+                  <option value="Bears">3rd Grade (Bears)</option>
+                  <option value="Webelos">4th Grade (Webelos)</option>
+                  <option value="Arrow of Light">5th Grade (Arrow of Light)</option>
+                  <option value="Multiple Scouts">Multiple Siblings / Scouts</option>
+                  <option value="Adult Leader">Adult Leader / Volunteer</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-pack-navy mb-1.5">Payment Purpose / Category *</label>
+                <select id="pay-purpose" onchange="handlePurposeChange()" required class="w-full bg-pack-cream/60 border border-pack-border rounded-xl px-4 py-2.5 text-sm text-pack-dark focus:outline-none focus:border-pack-navy focus:bg-white transition-all">
+                  <option value="Pack Annual Dues">Pack Annual Dues ($80.00)</option>
+                  <option value="Fall Campout Fee">Fall Campout / Outing Fee</option>
+                  <option value="Spring Campout Fee">Spring Campout / Outing Fee</option>
+                  <option value="Pinewood Derby Kit">Pinewood Derby Extra Car / Kit ($5.00)</option>
+                  <option value="Pack T-Shirt & Gear">Pack T-Shirt &amp; Uniform Gear</option>
+                  <option value="Scout Account Contribution">Scout Account Contribution</option>
+                  <option value="Voluntary Pack Donation">Voluntary Pack Donation</option>
+                  <option value="Other Activity Fee">Other Activity / Event Fee</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-pack-navy mb-1.5">Payment Amount ($) *</label>
+                <div class="flex items-center gap-2">
+                  <div class="relative flex-1">
+                    <span class="absolute left-3.5 top-1/2 -translate-y-1/2 font-bold text-pack-dark/60 text-sm">$</span>
+                    <input type="number" id="pay-amount" required min="1" max="1000" step="any" value="80" class="w-full bg-pack-cream/60 border border-pack-border rounded-xl pl-8 pr-4 py-2.5 text-sm font-bold text-pack-navy focus:outline-none focus:border-pack-navy focus:bg-white transition-all" />
+                  </div>
+                  <!-- Quick Amount Selection Pills -->
+                  <div class="flex items-center gap-1">
+                    <button type="button" onclick="setQuickAmount(25)" class="px-2.5 py-2 text-xs font-bold rounded-lg border border-pack-border bg-pack-cream hover:bg-pack-gold/20 text-pack-navy transition-colors">$25</button>
+                    <button type="button" onclick="setQuickAmount(50)" class="px-2.5 py-2 text-xs font-bold rounded-lg border border-pack-border bg-pack-cream hover:bg-pack-gold/20 text-pack-navy transition-colors">$50</button>
+                    <button type="button" onclick="setQuickAmount(80)" class="px-2.5 py-2 text-xs font-bold rounded-lg border border-pack-navy bg-pack-navy text-white transition-colors">$80</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold uppercase tracking-wider text-pack-navy mb-1.5">Optional Notes / Details</label>
+              <input type="text" id="pay-notes" maxlength="200" placeholder="e.g. Dues for both siblings, dietary notes, or uniform sizes..." class="w-full bg-pack-cream/60 border border-pack-border rounded-xl px-4 py-2.5 text-sm text-pack-dark placeholder-pack-dark/40 focus:outline-none focus:border-pack-navy focus:bg-white transition-all" />
+            </div>
+
+            <div id="payment-form-error" class="hidden p-4 bg-red-500/10 border border-red-500/30 rounded-xl text-center text-xs font-bold text-red-700"></div>
+
+            <button 
+              type="submit" 
+              id="pay-submit-btn" 
+              class="w-full py-4 bg-pack-gold hover:bg-pack-orange text-pack-dark font-heading font-extrabold text-base rounded-2xl shadow-md hover:shadow-lg transition-all transform hover:-translate-y-0.5 flex items-center justify-center gap-2"
+            >
+              <span>Log Payment &amp; Generate Venmo Memo</span>
+              <span>→</span>
+            </button>
+          </form>
+
         </div>
 
         <!-- ================= CARD 1: WELCOME TO SCOUTING HANDBOOK ================= -->
@@ -537,6 +720,196 @@
         field.type = 'password';
         btn.textContent = 'Show';
       }
+    }
+
+    // ================= PAYMENTS & DUES SYSTEM =================
+    const PAYMENTS_API_ENDPOINT = 'https://script.google.com/macros/s/AKfycbzUsB4u0EmtFZr_uHpD9D2E2dVGONHf_dRF9IVJVE8pNiLjmm0fympd-GqFXOKg7hv6/exec';
+
+    function setQuickAmount(val) {
+      const amtInput = document.getElementById('pay-amount');
+      if (amtInput) {
+        amtInput.value = val;
+        amtInput.focus();
+      }
+    }
+
+    function handlePurposeChange() {
+      const purpose = document.getElementById('pay-purpose')?.value || '';
+      const amtInput = document.getElementById('pay-amount');
+      if (!amtInput) return;
+
+      if (purpose === 'Pack Annual Dues') {
+        amtInput.value = '80';
+      } else if (purpose === 'Pinewood Derby Kit') {
+        amtInput.value = '5';
+      } else if (purpose === 'Voluntary Pack Donation') {
+        if (!amtInput.value || amtInput.value === '80') amtInput.value = '25';
+      }
+    }
+
+    function sanitizeForSheet(str) {
+      if (!str) return '';
+      let clean = String(str).trim();
+      // Guard against spreadsheet formula injection (=, +, -, @, \t, \r)
+      if (/^[=+\-@\t\r]/.test(clean)) {
+        clean = "'" + clean;
+      }
+      return clean;
+    }
+
+    function generateRefCode(scoutName) {
+      const now = new Date();
+      const mm = String(now.getMonth() + 1).padStart(2, '0');
+      const dd = String(now.getDate()).padStart(2, '0');
+      const rand = Math.random().toString(36).substring(2, 6).toUpperCase();
+      
+      let lastName = 'SCOUT';
+      if (scoutName) {
+        const parts = scoutName.trim().split(/\s+/);
+        lastName = (parts.length > 1 ? parts[parts.length - 1] : parts[0]).toUpperCase().replace(/[^A-Z]/g, '');
+      }
+      return `DUES-${mm}${dd}-${rand} ${lastName}`;
+    }
+
+    async function submitPortalPayment(event) {
+      if (event) event.preventDefault();
+
+      const errBox = document.getElementById('payment-form-error');
+      if (errBox) errBox.classList.add('hidden');
+
+      // Bot honeypot check
+      const hp = document.getElementById('pay-hp')?.value;
+      if (hp) {
+        console.warn('Bot submission blocked.');
+        return;
+      }
+
+      const parentName = document.getElementById('pay-parent-name')?.value.trim();
+      const parentEmail = document.getElementById('pay-parent-email')?.value.trim();
+      const scoutName = document.getElementById('pay-scout-name')?.value.trim();
+      const scoutRank = document.getElementById('pay-scout-rank')?.value || 'Pack Scout';
+      const purpose = document.getElementById('pay-purpose')?.value || 'Pack Dues';
+      const amountVal = parseFloat(document.getElementById('pay-amount')?.value || '0');
+      const notes = document.getElementById('pay-notes')?.value.trim() || '';
+
+      if (!parentName || !parentEmail || !scoutName || isNaN(amountVal) || amountVal <= 0) {
+        if (errBox) {
+          errBox.textContent = 'Please fill out all required fields with a valid payment amount.';
+          errBox.classList.remove('hidden');
+        }
+        return;
+      }
+
+      const submitBtn = document.getElementById('pay-submit-btn');
+      const origBtnHtml = submitBtn ? submitBtn.innerHTML : '';
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = `
+          <svg class="animate-spin -ml-1 mr-2 h-5 w-5 text-pack-dark" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
+          </svg>
+          <span>Logging Payment to Treasury...</span>
+        `;
+      }
+
+      const memo = generateRefCode(scoutName);
+      const formattedTotal = `$${amountVal.toFixed(2)}`;
+
+      const payload = {
+        action: 'recordPayment',
+        timestamp: new Date().toISOString(),
+        paymentId: memo.split(' ')[0],
+        parentName: sanitizeForSheet(parentName),
+        email: sanitizeForSheet(parentEmail),
+        scoutName: sanitizeForSheet(scoutName),
+        rank: sanitizeForSheet(scoutRank),
+        category: sanitizeForSheet(purpose),
+        amount: amountVal,
+        venmoMemo: sanitizeForSheet(memo),
+        notes: sanitizeForSheet(notes),
+        status: 'Pending Venmo Transfer'
+      };
+
+      try {
+        // Send asynchronously to Google Apps Script. mode: 'no-cors' safely handles Apps Script redirect.
+        await fetch(PAYMENTS_API_ENDPOINT, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: {
+            'Content-Type': 'text/plain;charset=utf-8'
+          },
+          body: JSON.stringify(payload)
+        });
+      } catch (err) {
+        console.warn('Network log warning (submission still logged locally):', err);
+      }
+
+      // Populate Success Screen
+      const scoutEl = document.getElementById('receipt-scout-name');
+      if (scoutEl) scoutEl.textContent = `${scoutName} (${scoutRank})`;
+
+      const purposeEl = document.getElementById('receipt-purpose');
+      if (purposeEl) purposeEl.textContent = purpose;
+
+      const totalEl = document.getElementById('receipt-total');
+      if (totalEl) totalEl.textContent = formattedTotal;
+
+      const memoEl = document.getElementById('receipt-memo');
+      if (memoEl) memoEl.textContent = memo;
+
+      const venmoLink = document.getElementById('receipt-venmo-link');
+      if (venmoLink) {
+        const venmoUrl = `https://venmo.com/CubScoutPack-Unionville?txn=pay&note=${encodeURIComponent(memo)}&amount=${amountVal.toFixed(2)}`;
+        venmoLink.href = venmoUrl;
+      }
+
+      // Switch views
+      document.getElementById('portal-payment-form')?.classList.add('hidden');
+      const successScreen = document.getElementById('payment-success-screen');
+      if (successScreen) {
+        successScreen.classList.remove('hidden');
+        successScreen.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = origBtnHtml;
+      }
+    }
+
+    async function copyReceiptMemo() {
+      const memoEl = document.getElementById('receipt-memo');
+      const btn = document.getElementById('copy-memo-btn');
+      if (!memoEl) return;
+      const memoText = memoEl.textContent.trim();
+
+      try {
+        await navigator.clipboard.writeText(memoText);
+        if (btn) {
+          const orig = btn.textContent;
+          btn.textContent = 'Copied! ✓';
+          btn.classList.add('bg-pack-green');
+          setTimeout(() => {
+            btn.textContent = orig;
+            btn.classList.remove('bg-pack-green');
+          }, 2500);
+        }
+      } catch (e) {
+        alert('Venmo Memo: ' + memoText);
+      }
+    }
+
+    function resetPaymentForm() {
+      document.getElementById('payment-success-screen')?.classList.add('hidden');
+      const form = document.getElementById('portal-payment-form');
+      if (form) {
+        form.reset();
+        form.classList.remove('hidden');
+      }
+      const amtInput = document.getElementById('pay-amount');
+      if (amtInput) amtInput.value = '80';
+      document.getElementById('payments')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
     // Initialize state on page load
