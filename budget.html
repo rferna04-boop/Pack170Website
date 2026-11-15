@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pack Budget & Financial Dashboard | Cub Scout Pack 170</title>
+  <meta name="description" content="Live financial dashboard and annual budget breakdown for Cub Scout Pack 170, Unionville & Farmington, CT. Track pack balance, projected income, expenses, and inventory surplus." />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Plus Jakarta Sans & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            pack: {
+              navy: '#15446B',
+              dark: '#0B253A',
+              gold: '#E8A72B',
+              orange: '#DF6B26',
+              teal: '#007A8A',
+              green: '#267B44',
+              cream: '#FAF6EE',
+              paper: '#FFFFFF',
+              border: '#E2D9C8'
+            },
+            pastel: {
+              mint: '#D8F3E5',
+              'mint-dark': '#1F7A4D',
+              peach: '#FEE9D7',
+              'peach-dark': '#C85A1B',
+              gold: '#FEF3D6',
+              'gold-dark': '#B37D12',
+              sky: '#DCF0FA',
+              'sky-dark': '#026E86',
+              rose: '#FCE4EC',
+              'rose-dark': '#A23B68',
+              lavender: '#EDE7F6',
+              'lavender-dark': '#5E35B1'
+            }
+          },
+          fontFamily: {
+            heading: ['Outfit', 'sans-serif'],
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+          },
+          boxShadow: {
+            'bento': '0 4px 25px -4px rgba(11, 37, 58, 0.04), 0 2px 10px -2px rgba(11, 37, 58, 0.02)',
+            'bento-hover': '0 12px 35px -4px rgba(11, 37, 58, 0.08), 0 4px 15px -2px rgba(11, 37, 58, 0.04)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom scrollbar for ledger */
+    .ledger-scroll::-webkit-scrollbar {
+      width: 6px;
+    }
+    .ledger-scroll::-webkit-scrollbar-track {
+      background: #FAF6EE;
+      border-radius: 9999px;
+    }
+    .ledger-scroll::-webkit-scrollbar-thumb {
+      background: #D9D0C1;
+      border-radius: 9999px;
+    }
+    .ledger-scroll::-webkit-scrollbar-thumb:hover {
+      background: #B8AC98;
+    }
+
+    /* Subtle pulse animation for live dot */
+    @keyframes livePulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(1.15); }
+    }
+    .live-dot {
+      animation: livePulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+
+    /* Floating capsule waveform */
+    .capsule-bar {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .capsule-bar:hover {
+      transform: translateY(-4px) scaleY(1.05);
+      filter: brightness(0.95);
+    }
+  </style>
+</head>
+
+<body class="bg-pack-cream text-pack-dark font-sans antialiased selection:bg-pack-gold selection:text-pack-dark min-h-screen flex flex-col justify-between">
+
+  <!-- ================= TOP PILL NAVIGATION BAR ================= -->
+  <header class="sticky top-0 z-40 bg-pack-cream/90 backdrop-blur-md pt-3 pb-2 px-4 sm:px-6 lg:px-8 border-b border-pack-border/60">
+    <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
+      
+      <!-- Brand Lockup -->
+      <a href="portal.html" class="flex items-center gap-3 group flex-shrink-0">
+        <img src="logo.jpg" alt="Cub Scout Pack 170 Shield" class="h-10 w-auto rounded-xl shadow-xs border border-pack-gold/30 group-hover:scale-105 transition-transform" />
+        <div class="hidden sm:flex flex-col">
+          <span class="font-heading font-extrabold text-lg tracking-tight leading-none text-pack-navy">PACK 170</span>
+          <span class="text-[10px] font-bold uppercase tracking-widest text-pack-gold mt-0.5">Budget &amp; Financials</span>
+        </div>
+      </a>
+
+      <!-- Center Pill Navigation Container (Matching Screenshot Aesthetic) -->
+      <nav class="bg-white/80 backdrop-blur-md border border-pack-border/80 px-2 py-1.5 rounded-full shadow-xs flex items-center gap-1 overflow-x-auto max-w-full">
+        <a href="budget.html" class="bg-pack-dark text-white px-4 sm:px-5 py-2 rounded-full text-xs font-bold shadow-xs flex items-center gap-1.5 whitespace-nowrap">
+          <span class="w-2 h-2 rounded-full bg-pack-gold"></span>
+          <span>Budget</span>
+        </a>
+        <a href="portal.html" class="text-pack-dark/70 hover:text-pack-dark hover:bg-black/5 px-3.5 sm:px-4 py-2 rounded-full text-xs font-semibold transition-all whitespace-nowrap flex items-center gap-1.5">
+          <svg class="w-3.5 h-3.5 text-pack-dark/50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+          <span>Member Portal</span>
+        </a>
+        <a href="index.html" class="text-pack-dark/70 hover:text-pack-dark hover:bg-black/5 px-3.5 sm:px-4 py-2 rounded-full text-xs font-semibold transition-all whitespace-nowrap">
+          <span>Pack Home</span>
+        </a>
+      </nav>
+
+      <!-- Right Action Controls (Last Synced, Refresh Button & Status) -->
+      <div class="flex items-center gap-2.5 flex-shrink-0">
+        <!-- Last Synced Pill Badge -->
+        <div class="hidden md:flex items-center gap-1.5 bg-white border border-pack-border/80 px-3 py-1.5 rounded-full text-[11px] font-medium text-pack-dark/70 shadow-xs">
+          <span class="w-2 h-2 rounded-full bg-pack-green live-dot"></span>
+          <span id="sync-status">Syncing...</span>
+        </div>
+
+        <!-- Refresh Button -->
+        <button 
+          id="refresh-btn" 
+          onclick="fetchBudgetData(true)" 
+          title="Refresh Budget Data"
+          class="bg-white hover:bg-pack-gold/20 text-pack-dark border border-pack-border/80 hover:border-pack-gold/50 p-2 sm:px-3 sm:py-1.5 rounded-full text-xs font-semibold shadow-xs transition-all flex items-center gap-1.5"
+        >
+          <svg id="refresh-icon" class="w-4 h-4 text-pack-navy transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+          </svg>
+          <span class="hidden sm:inline">Refresh</span>
+        </button>
+
+        <!-- Lock Portal Link -->
+        <a 
+          href="portal.html" 
+          title="Return to Member Portal"
+          class="w-8 h-8 rounded-full bg-pack-navy/10 hover:bg-pack-navy text-pack-navy hover:text-white flex items-center justify-center transition-all text-xs"
+        >
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+        </a>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ================= MAIN CONTAINER ================= -->
+  <main class="flex-grow max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+
+    <!-- ================= LOADING SKELETON ================= -->
+    <div id="loading-skeleton" class="space-y-6 animate-pulse">
+      
+      <!-- Hero Skeleton -->
+      <div class="bg-white rounded-3xl p-8 border border-pack-border/80 shadow-bento h-80 flex flex-col justify-between">
+        <div class="flex justify-between items-start">
+          <div class="space-y-3 w-48">
+            <div class="h-4 bg-pack-cream rounded-full w-32"></div>
+            <div class="h-8 bg-pack-cream rounded-xl w-40"></div>
+          </div>
+          <div class="space-y-2 flex flex-col items-center">
+            <div class="h-3 bg-pack-cream rounded-full w-28"></div>
+            <div class="h-14 bg-pack-cream rounded-2xl w-64"></div>
+            <div class="h-6 bg-pack-cream rounded-full w-40"></div>
+          </div>
+          <div class="w-32 h-8 bg-pack-cream rounded-full"></div>
+        </div>
+        <div class="h-20 bg-pack-cream rounded-2xl w-full"></div>
+      </div>
+
+      <!-- Bento Grid Skeleton -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        <div class="lg:col-span-4 space-y-6">
+          <div class="bg-white rounded-3xl p-6 border border-pack-border/80 h-72"></div>
+          <div class="bg-white rounded-3xl p-6 border border-pack-border/80 h-64"></div>
+        </div>
+        <div class="lg:col-span-4 space-y-6">
+          <div class="bg-white rounded-3xl p-6 border border-pack-border/80 h-44"></div>
+          <div class="bg-white rounded-3xl p-6 border border-pack-border/80 h-96"></div>
+        </div>
+        <div class="lg:col-span-4">
+          <div class="bg-white rounded-3xl p-6 border border-pack-border/80 h-[560px]"></div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ================= ERROR BANNER (HIDDEN BY DEFAULT) ================= -->
+    <div id="error-banner" class="hidden bg-amber-50 border border-amber-200 rounded-3xl p-6 text-center space-y-3 shadow-bento">
+      <div class="w-12 h-12 mx-auto rounded-full bg-amber-100 text-amber-800 flex items-center justify-center font-bold text-xl">⚠️</div>
+      <h3 class="font-heading text-lg font-bold text-amber-900">Live Data Unavailable</h3>
+      <p id="error-message" class="text-xs text-amber-800/80 max-w-md mx-auto leading-relaxed">
+        We encountered a delay retrieving live figures from the pack treasury spreadsheet.
+      </p>
+      <button onclick="fetchBudgetData(true)" class="px-5 py-2 bg-amber-700 hover:bg-amber-800 text-white rounded-full text-xs font-bold transition-all shadow-xs">
+        Retry Live Sync
+      </button>
+    </div>
+
+    <!-- ================= LIVE DASHBOARD CONTENT ================= -->
+    <div id="dashboard-content" class="hidden space-y-6">
+
+      <!-- ================= 1. HERO BANNER (MATCHING SCREENSHOT) ================= -->
+      <section class="bg-white rounded-3xl border border-pack-border/80 p-6 sm:p-8 lg:p-10 shadow-bento relative overflow-hidden group">
+        
+        <!-- Subtle warm gradient wash in background -->
+        <div class="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-pack-cream/60 via-white/40 to-transparent pointer-events-none"></div>
+
+        <!-- Top Row: Metrics & Centerpiece Balance -->
+        <div class="relative z-10 grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+          
+          <!-- Left: Secondary Summary Metrics (Income & Expenses) -->
+          <div class="md:col-span-4 space-y-4">
+            
+            <!-- Metric 1: Projected Income -->
+            <div class="flex items-center gap-3.5 bg-pack-cream/50 hover:bg-pack-cream p-3 rounded-2xl border border-pack-border/40 transition-colors">
+              <div class="w-10 h-10 rounded-full bg-pastel-mint text-pastel-mint-dark flex items-center justify-center font-bold shadow-xs flex-shrink-0">
+                <svg class="w-5 h-5 text-pack-green" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 11l5-5m0 0l5 5m-5-5v12"/></svg>
+              </div>
+              <div>
+                <div id="hero-income" class="font-heading font-extrabold text-xl text-pack-navy leading-tight">$0.00</div>
+                <div class="text-[11px] font-semibold text-pack-dark/60 uppercase tracking-wider">Projected Revenue</div>
+              </div>
+            </div>
+
+            <!-- Metric 2: Projected Expenses -->
+            <div class="flex items-center gap-3.5 bg-pack-cream/50 hover:bg-pack-cream p-3 rounded-2xl border border-pack-border/40 transition-colors">
+              <div class="w-10 h-10 rounded-full bg-pastel-peach text-pastel-peach-dark flex items-center justify-center font-bold shadow-xs flex-shrink-0">
+                <svg class="w-5 h-5 text-pack-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 13l-5 5m0 0l-5-5m5 5V6"/></svg>
+              </div>
+              <div>
+                <div id="hero-expenses" class="font-heading font-extrabold text-xl text-pack-navy leading-tight">$0.00</div>
+                <div class="text-[11px] font-semibold text-pack-dark/60 uppercase tracking-wider">Projected Expenses</div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Center: Primary Balance Hero -->
+          <div class="md:col-span-8 flex flex-col items-center md:items-end lg:items-center text-center space-y-2">
+            <span class="text-xs font-bold uppercase tracking-widest text-pack-dark/50">Total Projected Ending Balance</span>
+            
+            <div class="font-heading font-extrabold text-5xl sm:text-6xl lg:text-7xl text-pack-navy tracking-tight leading-none" id="hero-ending-balance">
+              $0.00
+            </div>
+
+            <!-- Pill Delta Badge -->
+            <div class="pt-1">
+              <span id="hero-delta-pill" class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-bold bg-pastel-mint text-pastel-mint-dark border border-pack-green/20 shadow-xs">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg>
+                <span>Healthy Pack Reserve • 2026–2027</span>
+              </span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Bottom Waveform: Multi-color Vertical Capsule Bar Chart (Matching Screenshot) -->
+        <div class="mt-8 pt-6 border-t border-pack-border/40">
+          <div class="flex items-center justify-between mb-3 text-xs text-pack-dark/60 font-medium">
+            <span class="flex items-center gap-1.5 font-bold uppercase tracking-wider text-[10px] text-pack-navy">
+              <span class="w-2 h-2 rounded-full bg-pack-teal"></span>
+              Expense Distribution Capsule Spectrum
+            </span>
+            <span id="capsule-count-label" class="text-[11px] text-pack-dark/50">16 positive budgeted line items</span>
+          </div>
+
+          <!-- Capsule waveform container -->
+          <div id="capsule-chart-container" class="w-full h-24 sm:h-28 flex items-end justify-between gap-1 sm:gap-1.5 px-1 py-1 overflow-x-auto">
+            <!-- Dynamically populated vertical rounded capsule bars -->
+          </div>
+          
+          <div class="flex justify-between items-center text-[10px] text-pack-dark/40 uppercase tracking-widest pt-2">
+            <span>Rank Badges &amp; Pins</span>
+            <span>Program &amp; Campcraft</span>
+            <span>Pinewood Derby</span>
+            <span>Adult Registration</span>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ================= 2. BENTO GRID (3 COLUMNS) ================= -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+        
+        <!-- ================= LEFT COLUMN (4 COLS) ================= -->
+        <div class="lg:col-span-4 space-y-6">
+          
+          <!-- Card 2A: Budget Overview Card -->
+          <div class="bg-white rounded-3xl p-6 sm:p-7 border border-pack-border/80 shadow-bento hover:shadow-bento-hover transition-all space-y-5">
+            
+            <div class="flex items-center justify-between">
+              <div>
+                <h2 class="font-heading font-extrabold text-xl text-pack-navy">Budget Overview</h2>
+                <p class="text-xs text-pack-dark/60 mt-0.5">Cash flow vs. inventory allocation</p>
+              </div>
+              <div class="w-8 h-8 rounded-full bg-pack-cream flex items-center justify-center text-pack-dark/40 text-xs font-bold">
+                ↗
+              </div>
+            </div>
+
+            <!-- Legend Pills (Matching Screenshot Top of Card) -->
+            <div class="flex flex-wrap items-center gap-2 pt-1 text-xs">
+              <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-pastel-mint text-pastel-mint-dark font-bold text-[11px]">
+                <span class="w-2 h-2 rounded-full bg-pack-green"></span>
+                Income
+              </span>
+              <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-pastel-peach text-pastel-peach-dark font-bold text-[11px]">
+                <span class="w-2 h-2 rounded-full bg-pack-orange"></span>
+                Expenses
+              </span>
+              <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-pastel-gold text-pastel-gold-dark font-bold text-[11px]">
+                <span class="w-2 h-2 rounded-full bg-pack-gold"></span>
+                Surplus
+              </span>
+            </div>
+
+            <!-- Stacked Rounded Bar Chart Visual (Matching Screenshot's Rounded Column Groups) -->
+            <div class="space-y-4 pt-2">
+              
+              <!-- Metric Bar 1: Projected Revenue -->
+              <div class="space-y-1.5">
+                <div class="flex justify-between text-xs font-semibold">
+                  <span class="text-pack-dark/70">Projected Revenue</span>
+                  <span id="overview-income-val" class="font-bold text-pack-green">$530.00</span>
+                </div>
+                <div class="w-full h-4 bg-pack-cream rounded-full overflow-hidden p-0.5 border border-pack-border/40">
+                  <div id="overview-income-bar" class="h-full bg-pack-green rounded-full transition-all duration-700" style="width: 50%;"></div>
+                </div>
+              </div>
+
+              <!-- Metric Bar 2: Projected Expenses -->
+              <div class="space-y-1.5">
+                <div class="flex justify-between text-xs font-semibold">
+                  <span class="text-pack-dark/70">Total Planned Costs</span>
+                  <span id="overview-expense-val" class="font-bold text-pack-orange">$1,036.75</span>
+                </div>
+                <div class="w-full h-4 bg-pack-cream rounded-full overflow-hidden p-0.5 border border-pack-border/40">
+                  <div id="overview-expense-bar" class="h-full bg-pack-orange rounded-full transition-all duration-700" style="width: 95%;"></div>
+                </div>
+              </div>
+
+              <!-- Metric Bar 3: Inventory Surplus Saved -->
+              <div class="space-y-1.5">
+                <div class="flex justify-between text-xs font-semibold">
+                  <span class="text-pack-dark/70">Pre-Purchased Surplus</span>
+                  <span id="overview-surplus-val" class="font-bold text-amber-700">+$45.77</span>
+                </div>
+                <div class="w-full h-4 bg-pack-cream rounded-full overflow-hidden p-0.5 border border-pack-border/40">
+                  <div id="overview-surplus-bar" class="h-full bg-pack-gold rounded-full transition-all duration-700" style="width: 15%;"></div>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Inventory Surplus Highlight Box -->
+            <div class="bg-pastel-gold/40 border border-pack-gold/30 rounded-2xl p-4 text-xs space-y-1.5">
+              <div class="font-bold text-pastel-gold-dark flex items-center gap-1.5">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span>Inventory Cushion Effect</span>
+              </div>
+              <p class="text-pack-dark/80 text-[11px] leading-relaxed">
+                Pack 170 holds surplus Lions, Wolf, and Bear belt loops from prior bulk purchases, reducing our required out-of-pocket cash by <strong id="surplus-total-text" class="text-pack-navy">$45.77</strong>.
+              </p>
+            </div>
+
+          </div>
+
+          <!-- Card 2B: Bank & Fundraisers Card (Replacing Visa Card in Screenshot) -->
+          <div class="bg-gradient-to-br from-pack-dark via-pack-navy to-[#0A2840] text-white rounded-3xl p-6 sm:p-7 shadow-bento space-y-5 relative overflow-hidden">
+            
+            <!-- Watermark Shield Background -->
+            <div class="absolute -right-6 -bottom-6 w-36 h-36 opacity-10 pointer-events-none">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
+            </div>
+
+            <!-- Top Header & Account Type -->
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <span class="w-3 h-3 rounded-full bg-pack-gold"></span>
+                <span class="text-xs uppercase tracking-widest text-pack-gold font-bold">Pack 170 Treasury</span>
+              </div>
+              <span class="text-[11px] font-mono text-white/60">Farmington Bank</span>
+            </div>
+
+            <!-- Bank Balance Hero -->
+            <div class="space-y-1">
+              <div class="text-[11px] text-white/70 uppercase tracking-wider">Bank Balance as of 8/4/26</div>
+              <div id="card-bank-balance" class="font-heading font-extrabold text-3xl sm:text-4xl text-white tracking-tight">
+                $70.46
+              </div>
+            </div>
+
+            <!-- Fundraisers Breakdown List -->
+            <div class="pt-3 border-t border-white/10 space-y-2.5 text-xs">
+              <div class="text-[10px] uppercase tracking-wider text-white/50 font-bold">2026 Fundraiser Projections</div>
+              
+              <div class="flex justify-between items-center bg-white/5 px-3 py-2 rounded-xl">
+                <span class="flex items-center gap-1.5">
+                  <span>🌸</span>
+                  <span>Fall Mums Sale</span>
+                </span>
+                <span id="card-mums-income" class="font-bold text-pack-gold">$350.00</span>
+              </div>
+
+              <div class="flex justify-between items-center bg-white/5 px-3 py-2 rounded-xl">
+                <span class="flex items-center gap-1.5">
+                  <span>🎨</span>
+                  <span>Holiday Craft Fair</span>
+                </span>
+                <span id="card-craft-income" class="font-bold text-pack-gold">$230.00</span>
+              </div>
+
+              <div class="flex justify-between items-center bg-white/5 px-3 py-2 rounded-xl">
+                <span class="flex items-center gap-1.5">
+                  <span>🏎️</span>
+                  <span>Pinewood Derby Sponsors</span>
+                </span>
+                <span class="font-bold text-white/60">$0.00 (Self-Funded)</span>
+              </div>
+
+              <div class="flex justify-between items-center bg-white/5 px-3 py-2 rounded-xl">
+                <span class="flex items-center gap-1.5">
+                  <span>🪙</span>
+                  <span>Annual Pack Dues</span>
+                </span>
+                <span class="font-bold text-pack-green">$0.00 (100% Subsidized)</span>
+              </div>
+            </div>
+
+            <!-- Card Footer -->
+            <div class="pt-2 flex items-center justify-between text-[11px] text-white/60">
+              <span>Total Available Capital</span>
+              <span id="card-total-capital" class="font-bold text-white font-mono">$600.46</span>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- ================= CENTER COLUMN (4 COLS) ================= -->
+        <div class="lg:col-span-4 space-y-6">
+          
+          <!-- Card 3A: Pack Roster Card (Replacing "Quick Transfer" in Screenshot) -->
+          <div class="bg-white rounded-3xl p-6 sm:p-7 border border-pack-border/80 shadow-bento hover:shadow-bento-hover transition-all space-y-4">
+            
+            <div class="flex items-center justify-between">
+              <div>
+                <h2 class="font-heading font-extrabold text-xl text-pack-navy">Pack Roster</h2>
+                <p class="text-xs text-pack-dark/60 mt-0.5">Youth enrollment &amp; leaders</p>
+              </div>
+              <span id="roster-total-badge" class="px-3 py-1 rounded-full bg-pastel-mint text-pastel-mint-dark text-xs font-bold shadow-xs">
+                15 Scouts • 4 Adults
+              </span>
+            </div>
+
+            <!-- Horizontal Circular Badges (Matching Screenshot's Circular Avatars in "Quick Transfer") -->
+            <div class="pt-1">
+              <div id="roster-badges-container" class="flex flex-wrap items-center justify-between gap-2.5">
+                <!-- Dynamically rendered rank circles -->
+              </div>
+            </div>
+
+            <div class="p-3 bg-pack-cream/60 rounded-2xl border border-pack-border/40 text-[11px] text-pack-dark/70 flex items-center justify-between">
+              <span>Total Uniformed Members:</span>
+              <span id="roster-grand-total" class="font-bold text-pack-navy">19 Registered</span>
+            </div>
+
+          </div>
+
+          <!-- Card 3B: Top Spending Bubble Card (Matching "Top Spending" in Screenshot) -->
+          <div class="bg-white rounded-3xl p-6 sm:p-7 border border-pack-border/80 shadow-bento hover:shadow-bento-hover transition-all space-y-4">
+            
+            <div class="flex items-center justify-between">
+              <div>
+                <h2 class="font-heading font-extrabold text-xl text-pack-navy">Top Spending</h2>
+                <p class="text-xs text-pack-dark/60 mt-0.5">% share of budgeted pack expenses</p>
+              </div>
+              <div class="w-8 h-8 rounded-full bg-pack-cream flex items-center justify-center text-pack-dark/40 text-xs font-bold">
+                ↗
+              </div>
+            </div>
+
+            <!-- Overlapping Proportional Pastel Circles (Exact Screenshot Re-creation via SVG) -->
+            <div class="relative w-full aspect-[4/3] flex items-center justify-center pt-2">
+              <svg viewBox="0 0 340 250" class="w-full h-full max-h-60 overflow-visible select-none">
+                
+                <!-- Bubble 1: Adult Registration (22.2% - Soft Mint) -->
+                <g class="cursor-pointer transition-transform duration-300 hover:scale-105" transform-origin="105 95">
+                  <circle cx="105" cy="95" r="58" fill="#D8F3E5" stroke="#B2E7C8" stroke-width="2" />
+                  <text x="105" y="90" text-anchor="middle" font-family="'Outfit', sans-serif" font-weight="800" font-size="20" fill="#15446B">22%</text>
+                  <text x="105" y="108" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="600" font-size="10" fill="#1F7A4D">Registration</text>
+                </g>
+
+                <!-- Bubble 2: Pinewood Derby (21.5% - Soft Gold/Peach) -->
+                <g class="cursor-pointer transition-transform duration-300 hover:scale-105" transform-origin="210 85">
+                  <circle cx="210" cy="85" r="56" fill="#FEF3D6" stroke="#FDE5A9" stroke-width="2" />
+                  <text x="210" y="80" text-anchor="middle" font-family="'Outfit', sans-serif" font-weight="800" font-size="20" fill="#15446B">22%</text>
+                  <text x="210" y="98" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="600" font-size="10" fill="#B37D12">Derby &amp; Cars</text>
+                </g>
+
+                <!-- Bubble 3: Program & Activities (19.3% - Soft Sky Blue) -->
+                <g class="cursor-pointer transition-transform duration-300 hover:scale-105" transform-origin="150 175">
+                  <circle cx="150" cy="175" r="52" fill="#DCF0FA" stroke="#BAE3F7" stroke-width="2" />
+                  <text x="150" y="170" text-anchor="middle" font-family="'Outfit', sans-serif" font-weight="800" font-size="18" fill="#15446B">19%</text>
+                  <text x="150" y="188" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="600" font-size="10" fill="#026E86">Activities/STEM</text>
+                </g>
+
+                <!-- Bubble 4: Advancement & Pins (18.6% - Soft Rose) -->
+                <g class="cursor-pointer transition-transform duration-300 hover:scale-105" transform-origin="255 170">
+                  <circle cx="255" cy="170" r="49" fill="#FCE4EC" stroke="#F8BBD0" stroke-width="2" />
+                  <text x="255" y="166" text-anchor="middle" font-family="'Outfit', sans-serif" font-weight="800" font-size="17" fill="#15446B">19%</text>
+                  <text x="255" y="183" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="600" font-size="9" fill="#A23B68">Pins &amp; Badges</text>
+                </g>
+
+                <!-- Bubble 5: Campouts & Outdoors (18.5% - Soft Lavender) -->
+                <g class="cursor-pointer transition-transform duration-300 hover:scale-105" transform-origin="50 175">
+                  <circle cx="50" cy="175" r="48" fill="#EDE7F6" stroke="#D1C4E9" stroke-width="2" />
+                  <text x="50" y="171" text-anchor="middle" font-family="'Outfit', sans-serif" font-weight="800" font-size="17" fill="#15446B">18%</text>
+                  <text x="50" y="188" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="600" font-size="9" fill="#5E35B1">Campouts</text>
+                </g>
+
+              </svg>
+            </div>
+
+            <!-- Spending Category Summary List -->
+            <div class="space-y-2 pt-2 border-t border-pack-border/40 text-xs">
+              <div class="flex justify-between items-center">
+                <span class="flex items-center gap-1.5 text-pack-dark/80">
+                  <span class="w-2.5 h-2.5 rounded-full bg-[#1F7A4D]"></span>
+                  <span>Scouting Adult Registration</span>
+                </span>
+                <span class="font-bold text-pack-navy">$240.00</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="flex items-center gap-1.5 text-pack-dark/80">
+                  <span class="w-2.5 h-2.5 rounded-full bg-[#B37D12]"></span>
+                  <span>Pinewood Derby Celebration &amp; Cars</span>
+                </span>
+                <span class="font-bold text-pack-navy">$232.35</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="flex items-center gap-1.5 text-pack-dark/80">
+                  <span class="w-2.5 h-2.5 rounded-full bg-[#026E86]"></span>
+                  <span>Activities, Rockets &amp; Food Drive</span>
+                </span>
+                <span class="font-bold text-pack-navy">$208.46</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="flex items-center gap-1.5 text-pack-dark/80">
+                  <span class="w-2.5 h-2.5 rounded-full bg-[#A23B68]"></span>
+                  <span>Rank Patches, Belt Loops &amp; Pins</span>
+                </span>
+                <span class="font-bold text-pack-navy">$201.71</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="flex items-center gap-1.5 text-pack-dark/80">
+                  <span class="w-2.5 h-2.5 rounded-full bg-[#5E35B1]"></span>
+                  <span>Campout Fees &amp; Wilderness Supplies</span>
+                </span>
+                <span class="font-bold text-pack-navy">$200.00</span>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- ================= RIGHT COLUMN (4 COLS) ================= -->
+        <div class="lg:col-span-4">
+          
+          <!-- Card 4: Line-Item Ledger (Replacing "Recent Transactions" in Screenshot) -->
+          <div class="bg-white rounded-3xl p-6 sm:p-7 border border-pack-border/80 shadow-bento flex flex-col h-full space-y-4">
+            
+            <div class="flex items-center justify-between">
+              <div>
+                <h2 class="font-heading font-extrabold text-xl text-pack-navy">Line-Item Ledger</h2>
+                <p class="text-xs text-pack-dark/60 mt-0.5">Itemized expenses &amp; income lines</p>
+              </div>
+              <span id="ledger-count-badge" class="px-2.5 py-1 rounded-full bg-pack-cream text-pack-navy text-xs font-bold border border-pack-border/60">
+                29 items
+              </span>
+            </div>
+
+            <!-- Ledger Filter & Search -->
+            <div class="space-y-2.5 pt-1">
+              <div class="relative">
+                <input 
+                  type="text" 
+                  id="ledger-search" 
+                  oninput="filterLedger()" 
+                  placeholder="Filter items or notes..." 
+                  class="w-full bg-pack-cream/50 border border-pack-border rounded-xl pl-9 pr-4 py-2 text-xs text-pack-dark placeholder-pack-dark/40 focus:outline-none focus:border-pack-navy transition-all"
+                />
+                <svg class="w-4 h-4 text-pack-dark/40 absolute left-3 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+              </div>
+
+              <!-- Filter Pills -->
+              <div class="flex flex-wrap gap-1.5 text-[11px]">
+                <button onclick="setLedgerFilter('all', this)" class="ledger-filter-btn px-3 py-1 rounded-full font-bold bg-pack-navy text-white shadow-xs">All</button>
+                <button onclick="setLedgerFilter('expenses', this)" class="ledger-filter-btn px-3 py-1 rounded-full font-semibold text-pack-dark/70 hover:bg-pack-cream">Expenses</button>
+                <button onclick="setLedgerFilter('surplus', this)" class="ledger-filter-btn px-3 py-1 rounded-full font-semibold text-pack-dark/70 hover:bg-pack-cream">Surplus (Saved)</button>
+                <button onclick="setLedgerFilter('income', this)" class="ledger-filter-btn px-3 py-1 rounded-full font-semibold text-pack-dark/70 hover:bg-pack-cream">Fundraisers</button>
+              </div>
+            </div>
+
+            <!-- Scrollable Items Container (Matching Screenshot List Style) -->
+            <div id="ledger-list-container" class="ledger-scroll space-y-2 max-h-[580px] overflow-y-auto pr-1">
+              <!-- Dynamically populated rows -->
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="bg-pack-dark text-pack-cream/70 py-10 mt-16 border-t border-white/10 text-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+      
+      <div class="flex items-center gap-3">
+        <img src="logo.jpg" alt="Pack 170 Shield" class="h-9 w-auto rounded shadow-xs" />
+        <div>
+          <div class="font-heading font-bold text-white text-sm">Cub Scout Pack 170 • Financial Transparency</div>
+          <div>Serving Unionville &amp; Farmington, Connecticut</div>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-6 text-xs">
+        <a href="portal.html" class="text-white hover:text-pack-gold transition-colors">Member Portal</a>
+        <a href="index.html" class="text-white hover:text-pack-gold transition-colors">Pack Home</a>
+        <a href="mailto:cspack170ct@gmail.com" class="text-white hover:text-pack-gold transition-colors">cspack170ct@gmail.com</a>
+      </div>
+
+      <div class="text-white/50 text-center md:text-right">
+        Official Scouting America Unit • Live Google Apps Script Sync
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ================= CLIENT JAVASCRIPT ================= -->
+  <script>
+    const API_ENDPOINT = "https://script.google.com/macros/s/AKfycbzUsB4u0EmtFZr_uHpD9D2E2dVGONHf_dRF9IVJVE8pNiLjmm0fympd-GqFXOKg7hv6/exec";
+    const CACHE_KEY = "pack170_budget_cache_v1";
+
+    let rawBudgetData = null;
+    let currentFilter = 'all';
+
+    // Format currency
+    function formatCurrency(num) {
+      if (typeof num !== 'number') num = parseFloat(num) || 0;
+      return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(num);
+    }
+
+    // Format Relative Time for Last Synced
+    function formatSyncTime(isoString) {
+      if (!isoString) return "Live";
+      try {
+        const d = new Date(isoString);
+        return d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', month: 'short', day: 'numeric' });
+      } catch (e) {
+        return "Live";
+      }
+    }
+
+    // Main Fetch Function
+    async function fetchBudgetData(isManualRefresh = false) {
+      const refreshBtn = document.getElementById('refresh-btn');
+      const refreshIcon = document.getElementById('refresh-icon');
+      const syncStatus = document.getElementById('sync-status');
+      const errBanner = document.getElementById('error-banner');
+
+      if (refreshIcon) refreshIcon.classList.add('animate-spin');
+      if (syncStatus) syncStatus.textContent = "Syncing...";
+
+      // Check local cache first if initial load
+      if (!isManualRefresh && !rawBudgetData) {
+        try {
+          const cached = localStorage.getItem(CACHE_KEY);
+          if (cached) {
+            const parsed = JSON.parse(cached);
+            if (parsed && parsed.summary) {
+              rawBudgetData = parsed;
+              renderDashboard(parsed);
+            }
+          }
+        } catch (e) {
+          console.warn("Could not read budget cache", e);
+        }
+      }
+
+      try {
+        const res = await fetch(API_ENDPOINT, {
+          method: 'GET',
+          cache: 'no-store'
+        });
+
+        if (!res.ok) throw new Error("HTTP Status " + res.status);
+        const data = await res.json();
+
+        if (!data || !data.summary) {
+          throw new Error("Invalid budget payload received");
+        }
+
+        rawBudgetData = data;
+        try {
+          localStorage.setItem(CACHE_KEY, JSON.stringify(data));
+        } catch (e) {}
+
+        if (errBanner) errBanner.classList.add('hidden');
+        renderDashboard(data);
+
+        if (syncStatus) {
+          syncStatus.textContent = "Synced " + formatSyncTime(data.updatedAt);
+        }
+
+      } catch (err) {
+        console.error("Budget fetch error:", err);
+        if (syncStatus) syncStatus.textContent = "Sync failed";
+        
+        // If we don't have any cached data displayed, show error banner
+        if (!rawBudgetData) {
+          if (errBanner) {
+            document.getElementById('error-message').textContent = "Unable to connect to Google Apps Script (" + err.message + "). Please click retry.";
+            errBanner.classList.remove('hidden');
+            document.getElementById('loading-skeleton').classList.add('hidden');
+          }
+        }
+      } finally {
+        if (refreshIcon) refreshIcon.classList.remove('animate-spin');
+      }
+    }
+
+    // Render All Widgets
+    function renderDashboard(data) {
+      const skeleton = document.getElementById('loading-skeleton');
+      const dashboard = document.getElementById('dashboard-content');
+      if (skeleton) skeleton.classList.add('hidden');
+      if (dashboard) dashboard.classList.remove('hidden');
+
+      const summary = data.summary || {};
+      const income = data.income || [];
+      const expenses = data.expenses || [];
+      const scoutCounts = data.scoutCounts || [];
+
+      // 1. HERO BANNER
+      const endingBal = summary.endingBalance || 0;
+      const projIncome = summary.projectedIncome || 0;
+      const projExpenses = summary.projectedExpenses || 0;
+      const bankBal = summary.bankBalance || 0;
+
+      document.getElementById('hero-ending-balance').textContent = formatCurrency(endingBal);
+      document.getElementById('hero-income').textContent = formatCurrency(projIncome);
+      document.getElementById('hero-expenses').textContent = formatCurrency(projExpenses);
+
+      // 2. BOTTOM CAPSULE BAR CHART (HERO)
+      renderHeroCapsuleChart(expenses);
+
+      // 3. BUDGET OVERVIEW
+      // Calculate inventory surplus
+      const surplusItems = expenses.filter(e => e.total < 0);
+      const surplusTotal = surplusItems.reduce((acc, cur) => acc + Math.abs(cur.total || 0), 0);
+      
+      document.getElementById('overview-income-val').textContent = formatCurrency(projIncome);
+      document.getElementById('overview-expense-val').textContent = formatCurrency(projExpenses);
+      document.getElementById('overview-surplus-val').textContent = "+" + formatCurrency(surplusTotal);
+      document.getElementById('surplus-total-text').textContent = formatCurrency(surplusTotal);
+
+      const maxVal = Math.max(projExpenses, projIncome, 1);
+      document.getElementById('overview-income-bar').style.width = Math.min(100, Math.round((projIncome / maxVal) * 100)) + '%';
+      document.getElementById('overview-expense-bar').style.width = Math.min(100, Math.round((projExpenses / maxVal) * 100)) + '%';
+      document.getElementById('overview-surplus-bar').style.width = Math.min(100, Math.max(8, Math.round((surplusTotal / maxVal) * 100))) + '%';
+
+      // 4. BANK & FUNDRAISERS CARD
+      document.getElementById('card-bank-balance').textContent = formatCurrency(bankBal);
+      const mumsItem = income.find(i => (i.item || '').toLowerCase().includes('mum'));
+      const craftItem = income.find(i => (i.item || '').toLowerCase().includes('craft'));
+      if (mumsItem) document.getElementById('card-mums-income').textContent = formatCurrency(mumsItem.amount);
+      if (craftItem) document.getElementById('card-craft-income').textContent = formatCurrency(craftItem.amount);
+
+      const totalCapital = bankBal + projIncome;
+      document.getElementById('card-total-capital').textContent = formatCurrency(totalCapital);
+
+      // 5. PACK ROSTER BADGES
+      renderRosterBadges(scoutCounts);
+
+      // 6. LINE-ITEM LEDGER
+      renderLedgerList(income, expenses);
+    }
+
+    // Render Hero Capsule Chart
+    function renderHeroCapsuleChart(expenses) {
+      const container = document.getElementById('capsule-chart-container');
+      if (!container) return;
+      container.replaceChildren();
+
+      const posExpenses = expenses.filter(e => e.total > 0);
+      document.getElementById('capsule-count-label').textContent = `${posExpenses.length} positive budgeted line items`;
+
+      const maxTotal = Math.max(...posExpenses.map(e => e.total), 1);
+
+      // Pastel palette array to loop through matching screenshot
+      const palette = [
+        { bg: 'bg-[#D8F3E5]', border: 'border-[#B8E8CE]', text: 'text-[#1F7A4D]' },
+        { bg: 'bg-[#FEE9D7]', border: 'border-[#FED3B0]', text: 'text-[#C85A1B]' },
+        { bg: 'bg-[#FEF3D6]', border: 'border-[#FDE7A8]', text: 'text-[#B37D12]' },
+        { bg: 'bg-[#DCF0FA]', border: 'border-[#BDE5F7]', text: 'text-[#026E86]' },
+        { bg: 'bg-[#FCE4EC]', border: 'border-[#F8BDD3]', text: 'text-[#A23B68]' },
+        { bg: 'bg-[#EDE7F6]', border: 'border-[#D4C4EA]', text: 'text-[#5E35B1]' },
+      ];
+
+      posExpenses.forEach((item, index) => {
+        const heightPct = Math.max(14, Math.round((item.total / maxTotal) * 100));
+        const color = palette[index % palette.length];
+
+        const barWrapper = document.createElement('div');
+        barWrapper.className = 'group relative flex-1 min-w-[12px] sm:min-w-[18px] max-w-[32px] h-full flex flex-col justify-end items-center';
+
+        const bar = document.createElement('div');
+        bar.className = `capsule-bar w-full rounded-full border ${color.bg} ${color.border} shadow-xs cursor-pointer`;
+        bar.style.height = `${heightPct}%`;
+
+        // Tooltip
+        const tip = document.createElement('div');
+        tip.className = 'absolute -top-12 z-30 hidden group-hover:flex flex-col items-center pointer-events-none whitespace-nowrap bg-pack-dark text-white px-2.5 py-1 rounded-lg text-[10px] shadow-lg';
+        tip.innerHTML = `<strong>${item.item}</strong><span>${formatCurrency(item.total)} (Qty: ${item.qtyNeeded})</span>`;
+
+        barWrapper.appendChild(tip);
+        barWrapper.appendChild(bar);
+        container.appendChild(barWrapper);
+      });
+    }
+
+    // Render Roster Badges
+    function renderRosterBadges(counts) {
+      const container = document.getElementById('roster-badges-container');
+      if (!container) return;
+      container.replaceChildren();
+
+      let youthTotal = 0;
+      let adultTotal = 0;
+
+      // Color themes per rank
+      const rankConfig = {
+        'Lions': { bg: 'bg-amber-100', text: 'text-amber-800', border: 'border-amber-300', icon: '🦁' },
+        'Tigers': { bg: 'bg-orange-100', text: 'text-orange-800', border: 'border-orange-300', icon: '🐯' },
+        'Wolves': { bg: 'bg-red-100', text: 'text-red-800', border: 'border-red-300', icon: '🐺' },
+        'Bears': { bg: 'bg-blue-100', text: 'text-blue-800', border: 'border-blue-300', icon: '🐻' },
+        'Webelos': { bg: 'bg-emerald-100', text: 'text-emerald-800', border: 'border-emerald-300', icon: '🌲' },
+        'Arrow of Light': { bg: 'bg-yellow-100', text: 'text-yellow-900', border: 'border-yellow-400', icon: '☀️' },
+        'Adults': { bg: 'bg-slate-200', text: 'text-slate-800', border: 'border-slate-300', icon: '⚜️' }
+      };
+
+      counts.forEach(c => {
+        const total = (c.fullPrice || 0) + (c.reduced || 0);
+        if (c.rank === 'Adults') {
+          adultTotal += total;
+        } else {
+          youthTotal += total;
+        }
+
+        const config = rankConfig[c.rank] || { bg: 'bg-pack-cream', text: 'text-pack-navy', border: 'border-pack-border', icon: '🎖️' };
+
+        const badge = document.createElement('div');
+        badge.className = 'flex flex-col items-center group cursor-pointer';
+        badge.title = `${c.rank}: ${total} registered (${c.fullPrice} regular, ${c.reduced} subsidized)`;
+
+        badge.innerHTML = `
+          <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-full ${config.bg} ${config.text} border-2 ${config.border} flex items-center justify-center font-heading font-extrabold text-sm sm:text-base shadow-xs group-hover:scale-110 transition-transform">
+            ${total}
+          </div>
+          <span class="text-[10px] font-bold text-pack-dark/70 mt-1 uppercase tracking-tight">${c.rank === 'Arrow of Light' ? 'AOL' : c.rank}</span>
+        `;
+
+        container.appendChild(badge);
+      });
+
+      document.getElementById('roster-total-badge').textContent = `${youthTotal} Scouts • ${adultTotal} Adults`;
+      document.getElementById('roster-grand-total').textContent = `${youthTotal + adultTotal} Registered Members`;
+    }
+
+    // Render Ledger Rows
+    function renderLedgerList(income, expenses) {
+      const container = document.getElementById('ledger-list-container');
+      if (!container) return;
+      container.replaceChildren();
+
+      const combined = [];
+
+      // Income lines
+      income.forEach(i => {
+        combined.push({
+          type: 'income',
+          item: i.item,
+          qtyOnHand: i.qtyOnHand || 0,
+          qtyNeeded: i.qtyNeeded || 0,
+          unitCost: null,
+          total: i.amount || 0,
+          note: i.amount > 0 ? 'Projected Fundraiser' : 'Self-funded program',
+          isSurplus: false
+        });
+      });
+
+      // Expense lines
+      expenses.forEach(e => {
+        combined.push({
+          type: 'expense',
+          item: e.item,
+          qtyOnHand: e.qtyOnHand || 0,
+          qtyNeeded: e.qtyNeeded || 0,
+          unitCost: e.unitCost || 0,
+          total: e.total || 0,
+          note: e.note || '',
+          isSurplus: (e.total < 0)
+        });
+      });
+
+      document.getElementById('ledger-count-badge').textContent = `${combined.length} items`;
+
+      combined.forEach(row => {
+        const div = document.createElement('div');
+        div.className = 'ledger-item p-3.5 bg-pack-cream/40 hover:bg-pack-cream rounded-2xl border border-pack-border/40 transition-colors flex items-center justify-between gap-3';
+        div.dataset.type = row.type;
+        div.dataset.surplus = row.isSurplus ? 'true' : 'false';
+        div.dataset.text = (row.item + ' ' + row.note).toLowerCase();
+
+        // Icon based on type
+        let iconHtml = '';
+        if (row.type === 'income') {
+          iconHtml = `<div class="w-9 h-9 rounded-full bg-pastel-mint text-pastel-mint-dark flex items-center justify-center font-bold text-sm flex-shrink-0">💰</div>`;
+        } else if (row.isSurplus) {
+          iconHtml = `<div class="w-9 h-9 rounded-full bg-pastel-gold text-pastel-gold-dark flex items-center justify-center font-bold text-sm flex-shrink-0">📦</div>`;
+        } else {
+          iconHtml = `<div class="w-9 h-9 rounded-full bg-pastel-sky text-pastel-sky-dark flex items-center justify-center font-bold text-sm flex-shrink-0">⚜️</div>`;
+        }
+
+        // Amount badge
+        let amountHtml = '';
+        if (row.isSurplus) {
+          amountHtml = `
+            <div class="text-right flex-shrink-0">
+              <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-bold bg-pastel-mint text-pastel-mint-dark border border-pack-green/20">
+                +${formatCurrency(Math.abs(row.total))}
+              </span>
+              <div class="text-[9px] uppercase tracking-wider text-pastel-mint-dark font-bold mt-0.5">Surplus Saved</div>
+            </div>
+          `;
+        } else if (row.type === 'income') {
+          amountHtml = `
+            <div class="text-right flex-shrink-0">
+              <div class="font-heading font-bold text-sm text-pack-green">+${formatCurrency(row.total)}</div>
+              <div class="text-[9px] uppercase tracking-wider text-pack-dark/50">Fundraiser</div>
+            </div>
+          `;
+        } else {
+          amountHtml = `
+            <div class="text-right flex-shrink-0">
+              <div class="font-heading font-bold text-sm text-pack-navy">${formatCurrency(row.total)}</div>
+              ${row.unitCost ? `<div class="text-[9px] text-pack-dark/50">$${row.unitCost.toFixed(2)} ea</div>` : ''}
+            </div>
+          `;
+        }
+
+        // Qty Pill
+        const qtyPill = (row.qtyOnHand > 0 || row.qtyNeeded > 0)
+          ? `<span class="text-[10px] text-pack-dark/60 bg-white border border-pack-border/60 px-2 py-0.5 rounded-md font-mono">OnHand: ${row.qtyOnHand} / Need: ${row.qtyNeeded}</span>`
+          : '';
+
+        div.innerHTML = `
+          <div class="flex items-center gap-3 overflow-hidden">
+            ${iconHtml}
+            <div class="overflow-hidden">
+              <div class="font-bold text-xs text-pack-navy truncate">${row.item}</div>
+              <div class="flex items-center gap-2 mt-0.5 flex-wrap">
+                ${qtyPill}
+                ${row.note ? `<span class="text-[10px] text-pack-dark/50 italic truncate max-w-[150px] sm:max-w-[200px]" title="${row.note}">${row.note}</span>` : ''}
+              </div>
+            </div>
+          </div>
+          ${amountHtml}
+        `;
+
+        container.appendChild(div);
+      });
+    }
+
+    // Filter Ledger Rows
+    function filterLedger() {
+      const q = (document.getElementById('ledger-search').value || '').toLowerCase().trim();
+      const items = document.querySelectorAll('.ledger-item');
+
+      items.forEach(el => {
+        const textMatch = !q || (el.dataset.text || '').includes(q);
+        let filterMatch = true;
+
+        if (currentFilter === 'expenses') filterMatch = (el.dataset.type === 'expense');
+        else if (currentFilter === 'surplus') filterMatch = (el.dataset.surplus === 'true');
+        else if (currentFilter === 'income') filterMatch = (el.dataset.type === 'income');
+
+        if (textMatch && filterMatch) {
+          el.classList.remove('hidden');
+        } else {
+          el.classList.add('hidden');
+        }
+      });
+    }
+
+    function setLedgerFilter(filter, btn) {
+      currentFilter = filter;
+      document.querySelectorAll('.ledger-filter-btn').forEach(b => {
+        b.className = 'ledger-filter-btn px-3 py-1 rounded-full font-semibold text-pack-dark/70 hover:bg-pack-cream';
+      });
+      if (btn) {
+        btn.className = 'ledger-filter-btn px-3 py-1 rounded-full font-bold bg-pack-navy text-white shadow-xs';
+      }
+      filterLedger();
+    }
+
+    // Initial load
+    document.addEventListener('DOMContentLoaded', () => {
+      fetchBudgetData(false);
+    });
+  </script>
+
+</body>
+</html>
